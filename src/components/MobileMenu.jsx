@@ -1,13 +1,6 @@
-import React from "react";
-import { scrollToSection } from '../utils/smoothScroll';
+import React, { useEffect } from "react";
 
 const MobileMenu = ({ menuOpen, setMenuOpen }) => {
-  const handleNavClick = (e, sectionId) => {
-    e.preventDefault();
-    scrollToSection(sectionId);
-    setMenuOpen(false);
-  };
-
   return (
     <div
       className={`fixed top-0 left-0 w-full bg-[rgba(10,10,10,0.8)] z-40 flex flex-col items-center justify-center
@@ -24,19 +17,46 @@ const MobileMenu = ({ menuOpen, setMenuOpen }) => {
         &times;
       </button>
 
-      {['home', 'about', 'projects', 'contact'].map((item) => (
-        <a
-          key={item}
-          href={`#${item}`}
-          onClick={(e) => handleNavClick(e, item)}
-          className={`text-2xl font-semibold text-gray-300 hover:text-white my-4 transform transition-transform duration-300
+      <a
+        href="#home"
+        onClick={() => setMenuOpen(false)}
+        className={`text-2xl font-semibold text-gray-300 hover:text-white my-4 transform transition-transform duration-300
+                  ${
+                    menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+                  }`}
+      >
+        Home
+      </a>
+      <a
+        href="#about"
+        onClick={() => setMenuOpen(false)}
+        className={`text-2xl font-semibold text-gray-300 hover:text-white my-4 transform transition-transform duration-300 
                     ${
                       menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
                     }`}
-        >
-          {item.charAt(0).toUpperCase() + item.slice(1)}
-        </a>
-      ))}
+      >
+        About
+      </a>
+      <a
+        href="#projects"
+        onClick={() => setMenuOpen(false)}
+        className={`text-2xl font-semibold text-gray-300 hover:text-white my-4 transform transition-transform duration-300
+          ${
+            menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+          }`}
+      >
+        Projects
+      </a>
+      <a
+        href="#contact"
+        onClick={() => setMenuOpen(false)}
+        className={`text-2xl font-semibold text-gray-300 hover:text-white my-4 transform transition-transform duration-300
+          ${
+            menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+          }`}
+      >
+        Contact
+      </a>
     </div>
   );
 };
