@@ -8,14 +8,15 @@ const skillsData = {
       "C", 
       "C++", 
       "Python", 
-      "JavaScript"
+      "JavaScript",
+      "TypeScript"
     ]
   },
   frontend: {
     title: "Frontend",
     skills: [
       "React", 
-      "TailwindCSS"
+      "TailwindCSS",
     ]
   },
   backend: {
@@ -23,8 +24,8 @@ const skillsData = {
     skills: [
       "Node.js", 
       "Express.js",
-       "Python", 
-       "MongoDB"
+      "Python", 
+      "MongoDB"
       ]
   },
   tools: {
