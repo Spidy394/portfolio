@@ -3,7 +3,16 @@ import RevealOnScroll from "../RevealOnScroll";
 import TypewriterText from "../TypewriterText";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { RiTwitterXLine } from "react-icons/ri";
+import { scrollToSection } from '../../utils/smoothScroll';
+
 const Home = () => {
+
+  const handleScrollOnClick = (e, sectionId) => {
+    e.preventDefault();
+    scrollToSection(sectionId);
+  }
+
+
   const [startAnimation, setStartAnimation] = useState(false);
 
   useEffect(() => {
@@ -41,12 +50,14 @@ const Home = () => {
           <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 px-4">
             <a
               href="#projects"
+              onClick={(e) => handleScrollOnClick(e, "projects")}
               className="bg-blue-500 text-white py-2.5 sm:py-3 px-6 rounded font-medium transition relative overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)] text-sm sm:text-base"
             >
               View Projects
             </a>
             <a
               href="#contact"
+              onClick={(e) => handleScrollOnClick(e, "contact")}
               className="border border-blue-500/50 text-blue-500 py-2.5 sm:py-3 px-6 rounded font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.2)] hover:bg-blue-500/10 text-sm sm:text-base"
             >
               Contact Me
