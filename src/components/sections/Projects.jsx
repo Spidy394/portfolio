@@ -38,7 +38,7 @@ const Projects = () => {
                   href="https://github.com/Spidy394/AI-GF.git"
                   className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors font-medium"
                 >
-                  View Project →
+                  GitHub →
                 </a>
               </div>
             </div>
@@ -68,7 +68,7 @@ const Projects = () => {
                   href="https://konvo-tme9.onrender.com/"
                   className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
                 >
-                  View Project →
+                  View →
                 </a>
               </div>
             </div>
