@@ -13,23 +13,36 @@ const Navbar = ({ menuOpen, setMenuOpen }) => {
     };
 
     return (
-        <nav className="fixed top-0 w-full z-40 bg-[rgba(10, 10, 10, 0.8)] backdrop-blur-lg border-b border-white/10 shadow-lg">
+        <nav className="fixed top-0 w-full z-40 bg-[rgba(10, 10, 10, 0.85)] backdrop-blur-lg border-b border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
             <div className="container mx-auto">
                 <div className="flex justify-between items-center h-16 md:h-20">
                     <a 
                         href="#home" 
                         onClick={(e) => handleNavClick(e, 'home')}
-                        className="font-mono text-lg md:text-xl font-bold text-white hover:text-blue-500 transition-colors"
+                        className="font-mono text-lg md:text-xl font-bold text-white group cursor-pointer relative py-2 px-4 -mx-4"
                     >
-                        shubho<span className="text-blue-500">.dev</span>
+                        <span className="relative z-10 inline-block transition-all duration-300 ease-in-out group-hover:scale-105 group-hover:-rotate-1">
+                            <span className="transition-all duration-300 ease-in-out group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-cyan-300 group-hover:bg-clip-text">
+                                shubho
+                            </span>
+                            <span className="text-transparent bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text transition-all duration-300 ease-in-out group-hover:from-cyan-300 group-hover:to-blue-300 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]">
+                                .dev
+                            </span>
+                        </span>
+                        <div className="absolute -inset-3 bg-gradient-to-r from-blue-500/10 to-cyan-400/10 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out -z-10 blur-sm"></div>
+                        <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/5 to-cyan-400/5 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 ease-in-out -z-10"></div>
+                        <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-400 group-hover:w-full transition-all duration-300 ease-in-out"></div>
                     </a>
 
                     <button
-                        className="w-8 h-8 flex items-center justify-center text-2xl text-gray-300 hover:text-white transition-colors md:hidden"
+                        className="w-10 h-10 flex items-center justify-center text-xl text-gray-300 hover:text-white transition-all duration-300 md:hidden rounded-lg hover:bg-white/10 group relative overflow-hidden transform hover:scale-110 hover:rotate-3"
                         onClick={() => setMenuOpen((prev) => !prev)}
                         aria-label="Toggle menu"
                     >
-                        {menuOpen ? '×' : '☰'}
+                        <span className="relative z-10 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.6)]">
+                            {menuOpen ? '×' : '☰'}
+                        </span>
+                        <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 to-cyan-400/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10 blur-sm"></div>
                     </button>
 
                     <div className="hidden md:flex items-center space-x-8">
@@ -38,9 +51,14 @@ const Navbar = ({ menuOpen, setMenuOpen }) => {
                                 key={item}
                                 href={`#${item}`}
                                 onClick={(e) => handleNavClick(e, item)}
-                                className="text-gray-300 hover:text-white transition-colors capitalize text-sm md:text-base"
+                                className="relative text-gray-300 hover:text-white transition-all duration-300 capitalize text-sm md:text-base py-2 px-3 rounded-lg hover:bg-white/10 group overflow-hidden"
                             >
-                                {item}
+                                <span className="relative z-10 transition-all duration-300 group-hover:scale-105 inline-block">
+                                    {item}
+                                </span>
+                                <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/10 to-cyan-400/10 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10 blur-sm"></div>
+                                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-cyan-400/5 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 -z-10"></div>
                             </a>
                         ))}
                     </div>

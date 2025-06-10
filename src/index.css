@@ -4,7 +4,8 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: "Space Grotesk", sans-serif;
-  background: #0a0a0a;
+  background: linear-gradient(180deg, #000000 0%, #0f0f23 50%, #000000 100%);
+  background-attachment: fixed;
   color: #f3f4f6;
   overflow-x: hidden;
 }
