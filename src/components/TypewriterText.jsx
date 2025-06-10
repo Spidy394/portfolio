@@ -1,25 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 const TypewriterText = ({ text, delay = 100, className = "", startAnimation = false }) => {
   const [currentText, setCurrentText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
+  const fullText = useMemo(() => text, [text]);
 
-  // Reset the effect when text changes or startAnimation changes
   useEffect(() => {
     setCurrentText('');
     setCurrentIndex(0);
-  }, [text, startAnimation]);
+  }, [fullText, startAnimation]);
 
   useEffect(() => {
-    if (startAnimation && currentIndex < text.length) {
+    if (startAnimation && currentIndex < fullText.length) {
       const timeout = setTimeout(() => {
-        setCurrentText(prev => prev + text[currentIndex]);
+        setCurrentText(prev => prev + fullText[currentIndex]);
         setCurrentIndex(prev => prev + 1);
       }, delay);
-
       return () => clearTimeout(timeout);
     }
-  }, [currentIndex, delay, text, startAnimation]);
+  }, [currentIndex, delay, fullText, startAnimation]);
 
   return (
     <span className={className}>
@@ -29,4 +28,4 @@ const TypewriterText = ({ text, delay = 100, className = "", startAnimation = fa
   );
 };
 
-export default TypewriterText; 
+export default TypewriterText;

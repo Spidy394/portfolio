@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, Suspense, lazy } from 'react'
 import LoadingScreen from './components/LoadingScreen'
 import StarField from './components/StarField'
 import Navbar from './components/Navbar';
 import MobileMenu from './components/MobileMenu';
 import Home from './components/sections/Home'
-import About from './components/sections/About';
-import Projects from './components/sections/Projects';
-import Contact from './components/sections/Contact';
+
+const About = lazy(() => import('./components/sections/About'));
+const Projects = lazy(() => import('./components/sections/Projects'));
+const Contact = lazy(() => import('./components/sections/Contact'));
 
 const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -14,7 +15,7 @@ const App = () => {
 
   return (
     <>
-      {!isLoaded && <LoadingScreen onComplete={() => setIsLoaded(true)} />}{" "}
+      {!isLoaded && <LoadingScreen onComplete={() => setIsLoaded(true)} />} {" "}
       <div
         className={`min-h-screen transition-opacity duration-700 ${
           isLoaded ? "opacity-100" : "opacity-0"
@@ -25,9 +26,11 @@ const App = () => {
           <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
           <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
           <Home />
-          <About />
-          <Projects />
-          <Contact />
+          <Suspense fallback={<div className="text-center py-10 text-gray-400">Loading...</div>}>
+            <About />
+            <Projects />
+            <Contact />
+          </Suspense>
         </div>
       </div>
     </>

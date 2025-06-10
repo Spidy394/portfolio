@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import RevealOnScroll from "../RevealOnScroll";
 import TypewriterText from "../TypewriterText";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
@@ -6,12 +6,10 @@ import { RiTwitterXLine } from "react-icons/ri";
 import { scrollToSection } from '../../utils/smoothScroll';
 
 const Home = () => {
-
-  const handleScrollOnClick = (e, sectionId) => {
+  const handleScrollOnClick = useCallback((e, sectionId) => {
     e.preventDefault();
     scrollToSection(sectionId);
-  }
-
+  }, []);
 
   const [startAnimation, setStartAnimation] = useState(false);
 
