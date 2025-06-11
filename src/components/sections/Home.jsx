@@ -3,6 +3,8 @@ import RevealOnScroll from "../RevealOnScroll";
 import TypewriterText from "../TypewriterText";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { RiTwitterXLine } from "react-icons/ri";
+import { HiMail, HiDocumentDownload } from "react-icons/hi";
+import { HiEye } from "react-icons/hi2";
 import { scrollToSection } from '../../utils/smoothScroll';
 
 const Home = () => {
@@ -49,30 +51,30 @@ const Home = () => {
             applications and crafting innovative solutions.
           </p>
           
-          <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 px-4">
-            <a
+          <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 px-4">            <a
               href="#projects"
               onClick={(e) => handleScrollOnClick(e, "projects")}
-              className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white py-3 px-8 rounded-lg font-medium transition-all duration-300 relative overflow-hidden hover:-translate-y-2 hover:shadow-[0_12px_35px_rgba(59,130,246,0.5)] text-sm sm:text-base backdrop-blur-sm group"
+              className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white py-3 px-8 rounded-lg font-medium transition-all duration-300 relative overflow-hidden hover:-translate-y-2 hover:shadow-[0_12px_35px_rgba(59,130,246,0.5)] text-sm sm:text-base backdrop-blur-sm group flex items-center gap-2 justify-center"
             >
-              <span className="relative z-10">View Projects</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <HiEye size={20} className="relative z-20 transition-all duration-300 group-hover:scale-110" />
+              <span className="relative z-20">View Projects</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
               <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg blur opacity-0 group-hover:opacity-50 transition-all duration-300 -z-10"></div>
-            </a>
-            <a
+            </a><a
               href="#contact"
               onClick={(e) => handleScrollOnClick(e, "contact")}
-              className="border border-blue-500/50 text-blue-400 py-3 px-8 rounded-lg font-medium transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_35px_rgba(59,130,246,0.3)] hover:bg-blue-500/15 hover:border-blue-400 hover:text-blue-300 text-sm sm:text-base backdrop-blur-sm group relative overflow-hidden"
+              className="border border-blue-500/50 text-blue-400 py-3 px-8 rounded-lg font-medium transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_35px_rgba(59,130,246,0.3)] hover:bg-blue-500/15 hover:border-blue-400 hover:text-blue-300 text-sm sm:text-base backdrop-blur-sm group relative overflow-hidden flex items-center gap-2 justify-center"
             >
+              <HiMail size={20} className="transition-all duration-300 group-hover:scale-110" />
               <span className="relative z-10">Contact Me</span>
               <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/30 to-blue-400/30 rounded-lg blur opacity-0 group-hover:opacity-50 transition-all duration-300 -z-10"></div>
-            </a>
-            <a
+            </a>            <a
               href="https://drive.google.com/file/d/14DHFFA2qBu7dQ3wjaufAzTXHtAcX2xyo/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className="border border-cyan-500/50 text-cyan-400 py-3 px-8 rounded-lg font-medium transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_35px_rgba(34,211,238,0.3)] hover:bg-cyan-500/15 hover:border-cyan-400 hover:text-cyan-300 text-sm sm:text-base backdrop-blur-sm group relative overflow-hidden"
+              className="border border-cyan-500/50 text-cyan-400 py-3 px-8 rounded-lg font-medium transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_35px_rgba(34,211,238,0.3)] hover:bg-cyan-500/15 hover:border-cyan-400 hover:text-cyan-300 text-sm sm:text-base backdrop-blur-sm group relative overflow-hidden flex items-center gap-2 justify-center"
             >
+              <HiDocumentDownload size={20} className="transition-all duration-300 group-hover:scale-110" />
               <span className="relative z-10">Download Resume</span>
               <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/30 to-cyan-400/30 rounded-lg blur opacity-0 group-hover:opacity-50 transition-all duration-300 -z-10"></div>
             </a>

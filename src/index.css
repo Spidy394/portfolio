@@ -75,7 +75,6 @@ p {
   .animate-blink{
     animation: blink 0.8s step-end infinite;
   }
-
   @keyframes blink-1 {
     0%, 100%{
       opacity: 1;
@@ -86,6 +85,26 @@ p {
   }
   .animate-blink-1{
     animation: blink-1 1s step-end infinite;
+  }
+  @keyframes plane-fly {
+    0% {
+      transform: translateX(0) rotate(0deg);
+    }
+    25% {
+      transform: translateX(4px) rotate(5deg);
+    }
+    50% {
+      transform: translateX(8px) rotate(0deg);
+    }
+    75% {
+      transform: translateX(4px) rotate(-5deg);
+    }
+    100% {
+      transform: translateX(0) rotate(0deg);
+    }
+  }
+  .animate-plane-fly{
+    animation: plane-fly 0.8s ease-in-out infinite;
   }
 }
 
