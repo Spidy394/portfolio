@@ -14,7 +14,9 @@ import {
   SiGit,
   SiPostman,
   SiFastapi,
-  SiCsswizardry
+  SiCsswizardry,
+  SiDocker,
+  SiNextdotjs
 } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
 import { HiCode, HiDesktopComputer, HiServer, HiCog } from "react-icons/hi";
@@ -38,6 +40,7 @@ const skillsData = {
       { name: "HTML", icon: FaHtml5 },
       { name: "CSS", icon: SiCsswizardry },
       { name: "React", icon: SiReact }, 
+      { name: "Next.js", icon: SiNextdotjs },
       { name: "TailwindCSS", icon: SiTailwindcss },
     ]
   },backend: {
@@ -49,14 +52,14 @@ const skillsData = {
       { name: "FastAPI", icon: SiFastapi }, 
       { name: "MongoDB", icon: SiMongodb }
       ]
-  },
-  tools: {
+  },  tools: {
     title: "Tools",
     titleIcon: HiCog,
     skills: [
       { name: "Git", icon: SiGit }, 
       { name: "VSCode", icon: VscVscode }, 
-      { name: "Postman", icon: SiPostman }
+      { name: "Postman", icon: SiPostman },
+      { name: "Docker", icon: SiDocker }
     ]
   }
 };
@@ -110,18 +113,18 @@ const SkillCard = ({ title, titleIcon, skills }) => {
               case 'c': return 'text-blue-600';
               case 'c++': return 'text-blue-700';
               case 'python': return 'text-yellow-500';
-              case 'javascript': return 'text-yellow-400';              case 'typescript': return 'text-blue-500';
-              case 'html': return 'text-orange-500';
+              case 'javascript': return 'text-yellow-400';              case 'typescript': return 'text-blue-500';              case 'html': return 'text-orange-500';
               case 'css': return 'text-[#6B399C]';
               case 'react': return 'text-cyan-400';
+              case 'next.js': return 'text-white';
               case 'tailwindcss': return 'text-cyan-500';
               case 'node.js': return 'text-green-500';
               case 'express.js': return 'text-gray-300';
               case 'fastapi': return 'text-[#05988A]';
-              case 'mongodb': return 'text-green-600';
-              case 'git': return 'text-orange-500';
+              case 'mongodb': return 'text-green-600';              case 'git': return 'text-orange-500';
               case 'vscode': return 'text-blue-400';
               case 'postman': return 'text-orange-400';
+              case 'docker': return 'text-blue-600';
               default: return 'text-gray-400';
             }
           };            return (
@@ -134,7 +137,7 @@ const SkillCard = ({ title, titleIcon, skills }) => {
                   className={`transition-all duration-300 ${getIconColor(skill.name)}`}
                 />
               </span>              {/* Tooltip */}
-              <div className="absolute -bottom-14 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none z-20 scale-75 group-hover:scale-100 group-hover:translate-y-1">
+              <div className="absolute -bottom-11 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none z-20 scale-75 group-hover:scale-100 group-hover:translate-y-1">
                 <div className={`bg-gray-900/95 backdrop-blur-md text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow-2xl border ${
                   color === 'blue' ? 'border-blue-500/30 shadow-blue-500/20' :
                   color === 'cyan' ? 'border-cyan-500/30 shadow-cyan-500/20' :
