@@ -13,13 +13,13 @@ import {
 import { HiMicrophone, HiChatBubbleLeftRight } from "react-icons/hi2";
 import { RiRobot2Fill } from "react-icons/ri";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
+import { BsLightning } from "react-icons/bs";
 
-const Projects = () => {
-  const getIconColor = (techName) => {
+const Projects = () => {  const getIconColor = (techName) => {
     switch(techName.toLowerCase()) {
       case 'python': return 'text-yellow-500';
       case 'gemini-api': return 'text-purple-400';
-      case 'uv': return 'text-green-400';
+      case 'uv': return 'text-[#D7FF64]';
       case 'javascript': return 'text-yellow-400';
       case 'react': return 'text-cyan-400';
       case 'tailwindcss': return 'text-cyan-500';
@@ -51,11 +51,10 @@ const Projects = () => {
               </p>
 
               {/* stack */}
-              <div className="flex flex-wrap gap-2 mb-6">
-                {[
+              <div className="flex flex-wrap gap-2 mb-6">                {[
                   { name: "Python", icon: SiPython },
                   { name: "Gemini-API", icon: RiRobot2Fill },
-                  { name: "uv", icon: null }
+                  { name: "uv", icon: BsLightning }
                 ].map((tech, index) => {
                   const IconComponent = tech.icon;
                   return (
