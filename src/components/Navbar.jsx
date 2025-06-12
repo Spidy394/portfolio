@@ -24,7 +24,7 @@ const Navbar = ({ menuOpen, setMenuOpen }) => {
                     >
                         <span className="relative z-10 inline-block transition-all duration-300 ease-in-out group-hover:scale-105 group-hover:-rotate-1">
                             <span className="transition-all duration-300 ease-in-out group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-cyan-300 group-hover:bg-clip-text">
-                                shubho
+                                spidy
                             </span>
                             <span className="text-transparent bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text transition-all duration-300 ease-in-out group-hover:from-cyan-300 group-hover:to-blue-300 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]">
                                 .dev
