@@ -108,6 +108,57 @@ p {
   }
 }
 
+/* Responsive spacing adjustments */
+@media (min-width: 1024px) {
+  .masonry-grid {
+    margin-left: -32px; /* Larger gap on bigger screens */
+  }
+  
+  .masonry-grid-column {
+    padding-left: 32px; /* Larger gap on bigger screens */
+  }
+  
+  .masonry-grid-column > div {
+    margin-bottom: 32px; /* More vertical spacing on larger screens */
+  }
+}
+
+@media (min-width: 1280px) {
+  .masonry-grid {
+    margin-left: -40px; /* Even larger gap on xl screens */
+  }
+  
+  .masonry-grid-column {
+    padding-left: 40px; /* Even larger gap on xl screens */
+  }
+  
+  .masonry-grid-column > div {
+    margin-bottom: 36px; /* Maximum vertical spacing */
+  }
+}
+
+/* Masonry Layout Styles */
+.masonry-grid {
+  display: flex;
+  margin-left: -24px; /* Increased gap between columns */
+  width: auto;
+}
+
+.masonry-grid-column {
+  padding-left: 24px; /* Increased gap between columns */
+  background-clip: padding-box;
+}
+
+.masonry-grid-column > div {
+  margin-bottom: 28px; /* Increased vertical spacing between cards */
+  break-inside: avoid;
+}
+
+/* Ensure consistent spacing and prevent layout shifts */
+.project-card {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
 
 .reveal{
   opacity: 0;

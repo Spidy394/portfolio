@@ -2,8 +2,7 @@ import React from "react";
 import RevealOnScroll from "../RevealOnScroll";
 import { 
   SiC, 
-  SiCplusplus, 
-  SiPython, 
+  SiCplusplus,
   SiJavascript, 
   SiTypescript,
   SiReact,
@@ -25,11 +24,10 @@ import { FaHtml5 } from "react-icons/fa";
 const skillsData = {
   languages: {
     title: "Languages",
-    titleIcon: HiCode,
-    skills: [
+    titleIcon: HiCode,    skills: [
       { name: "C", icon: SiC }, 
       { name: "C++", icon: SiCplusplus }, 
-      { name: "Python", icon: SiPython }, 
+      { name: "Python", icon: () => <img src="https://docs.python.org/3/_static/py.svg" alt="Python" className="w-6 h-6" /> }, 
       { name: "JavaScript", icon: SiJavascript },
       { name: "TypeScript", icon: SiTypescript }
     ]
@@ -128,15 +126,14 @@ const SkillCard = ({ title, titleIcon, skills }) => {
               default: return 'text-gray-400';
             }
           };            return (
-            <div key={index} className="relative group">
-              <span
+            <div key={index} className="relative group">              <span
                 className={`p-2 rounded-full transition-all duration-300 cursor-default flex items-center justify-center ${colorClasses[color].badge} hover:scale-110`}
               >
                 <IconComponent 
                   size={24} 
                   className={`transition-all duration-300 ${getIconColor(skill.name)}`}
                 />
-              </span>              {/* Tooltip */}
+              </span>{/* Tooltip */}
               <div className="absolute -bottom-11 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none z-20 scale-75 group-hover:scale-100 group-hover:translate-y-1">
                 <div className={`bg-gray-900/95 backdrop-blur-md text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow-2xl border ${
                   color === 'blue' ? 'border-blue-500/30 shadow-blue-500/20' :
