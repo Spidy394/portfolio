@@ -69,6 +69,7 @@ const Projects = () => {  // Masonry breakpoints for responsive layout
         { name: "JavaScript", icon: SiJavascript },
         { name: "React", icon: SiReact },
         { name: "TailwindCSS", icon: SiTailwindcss },
+        { name: "daisyUI", icon: () => <img src="https://img.daisyui.com/images/daisyui/mark-rotating.svg" alt="daisyUI" className="size-4" /> },
         { name: "Node.js", icon: SiNodedotjs },
         { name: "Express.js", icon: SiExpress },
         { name: "Socket.io", icon: SiSocketdotio },
@@ -85,6 +86,7 @@ const Projects = () => {  // Masonry breakpoints for responsive layout
       iconColor: "text-purple-400",
       description: "A full-stack platform built to empower the people with transparent, AI-driven complaint submission and resolution. Users can raise voice or text-based complaints, track them in real time, and engage with the community. Features include Gemini-powered categorization, ai powered transcription and translation.",
       technologies: [
+        { name: "JavaScript", icon: SiJavascript },
         { name: "Next.js", icon: RiNextjsFill },
         { name: "React", icon: SiReact },
         { name: "TailwindCSS", icon: SiTailwindcss },
