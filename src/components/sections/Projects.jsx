@@ -302,7 +302,7 @@ const Projects = () => {
   ];
   const renderProjectCard = (project) => {
     const isHovered = hoveredProject === project.id;
-    
+
     return (
       <motion.div
         key={project.id}
