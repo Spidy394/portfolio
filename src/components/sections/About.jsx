@@ -10,16 +10,33 @@ import {
   SiNodedotjs,
   SiExpress,
   SiMongodb,
+  SiPostgresql,
+  SiPrisma,
   SiGit,
   SiPostman,
   SiFastapi,
-  SiCsswizardry,
   SiDocker,
   SiNextdotjs,
+  SiVite,
+  SiGithubactions,
+  SiVercel,
+  SiRender,
+  SiRailway,
 } from "react-icons/si";
-import { VscVscode } from "react-icons/vsc";
-import { HiCode, HiDesktopComputer, HiServer, HiCog } from "react-icons/hi";
+import {
+  HiCode,
+  HiDesktopComputer,
+  HiServer,
+  HiCog,
+  HiDatabase,
+  HiCloud,
+} from "react-icons/hi";
 import { FaHtml5 } from "react-icons/fa";
+import {
+  getCardHoverClasses,
+  getTechBadgeClasses,
+  getColorScheme,
+} from "../../utils/colorSchemes";
 
 const skillsData = {
   languages: {
@@ -46,18 +63,13 @@ const skillsData = {
     title: "Frontend",
     titleIcon: HiDesktopComputer,
     skills: [
-      { name: "HTML", icon: FaHtml5 },
+      { name: "React", icon: SiReact },
       {
-        name: "CSS",
+        name: "Vite",
         icon: () => (
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Official_CSS_Logo.svg"
-            alt="css"
-            className="w-6 h-6"
-          />
+          <img src="https://vite.dev/logo.svg" alt="Vite" className="w-6 h-6" />
         ),
       },
-      { name: "React", icon: SiReact },
       { name: "Next.js", icon: SiNextdotjs },
       { name: "TailwindCSS", icon: SiTailwindcss },
     ],
@@ -69,23 +81,67 @@ const skillsData = {
       { name: "Node.js", icon: SiNodedotjs },
       { name: "Express.js", icon: SiExpress },
       { name: "FastAPI", icon: SiFastapi },
-      { name: "MongoDB", icon: SiMongodb },
     ],
   },
-  tools: {
-    title: "Tools",
+  database: {
+    title: "Database",
+    titleIcon: HiDatabase,
+    skills: [
+      { name: "MongoDB", icon: SiMongodb },
+      { name: "PostgreSQL", icon: SiPostgresql },
+      { name: "Prisma", icon: SiPrisma },
+      {
+        name: "Neon",
+        icon: () => (
+          <img
+            src="https://console.neon.tech/favicon/favicon.ico"
+            alt="Neon"
+            className="w-6 h-6"
+          />
+        ),
+      },
+    ],
+  },
+  devops: {
+    title: "DevOps & Tools",
     titleIcon: HiCog,
     skills: [
-      { name: "Git", icon: SiGit },
-      { name: "VSCode", icon: VscVscode },
-      { name: "Postman", icon: SiPostman },
       { name: "Docker", icon: SiDocker },
+      { name: "GitHub Actions", icon: SiGithubactions },
+      { name: "Postman", icon: SiPostman },
+    ],
+  },
+  cloud: {
+    title: "Cloud & Hosting",
+    titleIcon: HiCloud,
+    skills: [
+      { name: "Vercel", icon: SiVercel },
+      {
+        name: "Render",
+        icon: () => (
+          <img
+            src="https://camo.githubusercontent.com/690209768f1f7633fcb72b194e6bb3aae80c381680a660841cec9cc7c638b4fa/68747470733a2f2f736b696c6c732e73797669786f722e636f6d2f6170692f69636f6e733f693d72656e646572"
+            alt="Render"
+            className="w-6 h-6"
+          />
+        ),
+      },
+      {
+        name: "Railway",
+        icon: () => (
+          <img
+            src="https://railway.com/favicon-96x96.png"
+            alt="Railway"
+            className="size-6 rounded-full"
+          />
+        ),
+      },
     ],
   },
 };
 
 const SkillCard = ({ title, titleIcon, skills }) => {
-  const getColorScheme = (title) => {
+  const getColorSchemeName = (title) => {
     switch (title.toLowerCase()) {
       case "languages":
         return "blue";
@@ -93,55 +149,31 @@ const SkillCard = ({ title, titleIcon, skills }) => {
         return "cyan";
       case "backend":
         return "purple";
-      case "tools":
+      case "database":
         return "green";
+      case "devops & tools":
+        return "orange";
+      case "cloud & hosting":
+        return "indigo";
       default:
         return "blue";
     }
   };
 
-  const color = getColorScheme(title);
-  const colorClasses = {
-    blue: {
-      card: "hover:border-blue-500/30 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)]",
-      badge:
-        "bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)]",
-    },
-    cyan: {
-      card: "hover:border-cyan-500/30 hover:shadow-[0_2px_8px_rgba(34,211,238,0.2)]",
-      badge:
-        "bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20 hover:shadow-[0_2px_8px_rgba(34,211,238,0.2)]",
-    },
-    purple: {
-      card: "hover:border-purple-500/30 hover:shadow-[0_2px_8px_rgba(168,85,247,0.2)]",
-      badge:
-        "bg-purple-500/10 text-purple-400 hover:bg-purple-500/20 hover:shadow-[0_2px_8px_rgba(168,85,247,0.2)]",
-    },
-    green: {
-      card: "hover:border-green-500/30 hover:shadow-[0_2px_8px_rgba(34,197,94,0.2)]",
-      badge:
-        "bg-green-500/10 text-green-400 hover:bg-green-500/20 hover:shadow-[0_2px_8px_rgba(34,197,94,0.2)]",
-    },
-  };
+  const colorSchemeName = getColorSchemeName(title);
+  const colorScheme = getColorScheme(colorSchemeName);
+
   return (
     <div
-      className={`rounded-xl p-6 hover:-translate-y-1 transition-all duration-300 border border-white/10 bg-gray-900/30 backdrop-blur-sm ${colorClasses[color].card} w-fit min-w-[280px] max-w-[400px] flex-1`}
+      className={`rounded-xl p-6 hover:-translate-y-1 transition-all duration-300 border border-white/10 bg-gray-900/30 backdrop-blur-sm ${getCardHoverClasses(
+        colorSchemeName
+      )} w-fit min-w-[280px] max-w-[400px] flex-1`}
     >
       <h3 className="text-xl font-bold mb-4 text-white flex items-center gap-2 whitespace-nowrap">
         {titleIcon &&
           React.createElement(titleIcon, {
             size: 24,
-            className: `transition-all duration-300 hover:scale-110 ${
-              title === "Languages"
-                ? "text-blue-400"
-                : title === "Frontend"
-                ? "text-cyan-400"
-                : title === "Backend"
-                ? "text-purple-400"
-                : title === "Tools"
-                ? "text-green-400"
-                : "text-gray-400"
-            }`,
+            className: `transition-all duration-300 hover:scale-110 ${colorScheme.text.secondary}`,
           })}
         {title}
       </h3>
@@ -160,12 +192,10 @@ const SkillCard = ({ title, titleIcon, skills }) => {
                 return "text-yellow-400";
               case "typescript":
                 return "text-blue-500";
-              case "html":
-                return "text-orange-500";
-              case "css":
-                return "text-[#6B399C]";
               case "react":
                 return "text-cyan-400";
+              case "vite":
+                return "text-purple-500";
               case "next.js":
                 return "text-white";
               case "tailwindcss":
@@ -178,23 +208,34 @@ const SkillCard = ({ title, titleIcon, skills }) => {
                 return "text-[#05988A]";
               case "mongodb":
                 return "text-green-600";
-              case "git":
-                return "text-orange-500";
-              case "vscode":
-                return "text-blue-400";
-              case "postman":
-                return "text-orange-400";
+              case "postgresql":
+                return "text-blue-600";
+              case "prisma":
+                return "text-white";
+              case "neon":
+                return "text-[#6366f1]";
               case "docker":
                 return "text-blue-600";
+              case "github actions":
+                return "text-white";
+              case "postman":
+                return "text-orange-400";
+              case "vercel":
+                return "text-white";
+              case "render":
+                return "text-[#6B73FF]";
+              case "railway":
+                return "text-[#6B73FF]";
               default:
                 return "text-gray-400";
             }
           };
           return (
             <div key={index} className="relative group">
-              {" "}
               <span
-                className={`p-2 rounded-full transition-all duration-300 cursor-default flex items-center justify-center ${colorClasses[color].badge} hover:scale-110`}
+                className={`p-2 rounded-full transition-all duration-300 cursor-default flex items-center justify-center ${getTechBadgeClasses(
+                  colorSchemeName
+                )} hover:scale-110`}
               >
                 <IconComponent
                   size={24}
@@ -206,17 +247,24 @@ const SkillCard = ({ title, titleIcon, skills }) => {
               {/* Tooltip */}
               <div className="absolute -bottom-11 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none z-20 scale-75 group-hover:scale-100 group-hover:translate-y-1">
                 <div
-                  className={`bg-gray-900/95 backdrop-blur-md text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow-2xl border ${
-                    color === "blue"
-                      ? "border-blue-500/30 shadow-blue-500/20"
-                      : color === "cyan"
-                      ? "border-cyan-500/30 shadow-cyan-500/20"
-                      : color === "purple"
-                      ? "border-purple-500/30 shadow-purple-500/20"
-                      : color === "green"
-                      ? "border-green-500/30 shadow-green-500/20"
-                      : "border-white/20"
-                  } whitespace-nowrap relative overflow-hidden`}
+                  className={`bg-gray-900/95 backdrop-blur-md text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow-2xl border ${colorScheme.border.primary} whitespace-nowrap relative overflow-hidden`}
+                  style={{
+                    boxShadow: `0 2px 8px ${
+                      colorScheme.name === "blue"
+                        ? "rgba(59,130,246,0.2)"
+                        : colorScheme.name === "cyan"
+                        ? "rgba(34,211,238,0.2)"
+                        : colorScheme.name === "purple"
+                        ? "rgba(168,85,247,0.2)"
+                        : colorScheme.name === "green"
+                        ? "rgba(34,197,94,0.2)"
+                        : colorScheme.name === "orange"
+                        ? "rgba(249,115,22,0.2)"
+                        : colorScheme.name === "indigo"
+                        ? "rgba(99,102,241,0.2)"
+                        : "rgba(255,255,255,0.1)"
+                    }`,
+                  }}
                 >
                   {/* Glassmorphism overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-xl"></div>
@@ -228,32 +276,29 @@ const SkillCard = ({ title, titleIcon, skills }) => {
 
                   {/* Subtle glow effect */}
                   <div
-                    className={`absolute inset-0 rounded-xl opacity-50 ${
-                      color === "blue"
-                        ? "shadow-[inset_0_1px_0_rgba(59,130,246,0.3)]"
-                        : color === "cyan"
-                        ? "shadow-[inset_0_1px_0_rgba(34,211,238,0.3)]"
-                        : color === "purple"
-                        ? "shadow-[inset_0_1px_0_rgba(168,85,247,0.3)]"
-                        : color === "green"
-                        ? "shadow-[inset_0_1px_0_rgba(34,197,94,0.3)]"
-                        : "shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]"
-                    }`}
+                    className="absolute inset-0 rounded-xl opacity-50"
+                    style={{
+                      boxShadow: `inset 0 1px 0 ${
+                        colorScheme.name === "blue"
+                          ? "rgba(59,130,246,0.3)"
+                          : colorScheme.name === "cyan"
+                          ? "rgba(34,211,238,0.3)"
+                          : colorScheme.name === "purple"
+                          ? "rgba(168,85,247,0.3)"
+                          : colorScheme.name === "green"
+                          ? "rgba(34,197,94,0.3)"
+                          : colorScheme.name === "orange"
+                          ? "rgba(249,115,22,0.3)"
+                          : colorScheme.name === "indigo"
+                          ? "rgba(99,102,241,0.3)"
+                          : "rgba(255,255,255,0.1)"
+                      }`,
+                    }}
                   ></div>
 
                   {/* Arrow */}
                   <div
-                    className={`absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-b-[6px] border-transparent ${
-                      color === "blue"
-                        ? "border-b-blue-500/50"
-                        : color === "cyan"
-                        ? "border-b-cyan-500/50"
-                        : color === "purple"
-                        ? "border-b-purple-500/50"
-                        : color === "green"
-                        ? "border-b-green-500/50"
-                        : "border-b-gray-700/50"
-                    } drop-shadow-sm`}
+                    className={`absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-b-[6px] border-transparent border-b-${colorScheme.primary}/50 drop-shadow-sm`}
                   ></div>
                 </div>
               </div>
@@ -289,7 +334,9 @@ const About = () => {
               <SkillCard {...skillsData.languages} />
               <SkillCard {...skillsData.frontend} />
               <SkillCard {...skillsData.backend} />
-              <SkillCard {...skillsData.tools} />
+              <SkillCard {...skillsData.database} />
+              <SkillCard {...skillsData.devops} />
+              <SkillCard {...skillsData.cloud} />
             </div>
           </div>
 

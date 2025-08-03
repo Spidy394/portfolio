@@ -10,11 +10,17 @@ import {
   SiMongodb,
   SiSocketdotio,
   SiShadcnui,
+  SiTypescript,
 } from "react-icons/si";
 import { HiMicrophone, HiChatBubbleLeftRight } from "react-icons/hi2";
 import { RiNextjsFill } from "react-icons/ri";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
 import { BsLightning } from "react-icons/bs";
+import {
+  getCardHoverClasses,
+  getTechBadgeClasses,
+  getButtonClasses,
+} from "../../utils/colorSchemes";
 
 const Projects = () => {
   // Masonry breakpoints for responsive layout
@@ -28,6 +34,8 @@ const Projects = () => {
         return "text-[#D7FF64]";
       case "javascript":
         return "text-yellow-400";
+      case "typescript":
+        return "text-blue-500";
       case "react":
         return "text-cyan-400";
       case "next.js":
@@ -79,7 +87,7 @@ const Projects = () => {
         },
         { name: "uv", icon: BsLightning },
       ],
-      colorScheme: "blue",
+      colorScheme: "indigo",
       githubUrl: "https://github.com/Spidy394/AI-GF.git",
       type: "github",
     },
@@ -109,7 +117,7 @@ const Projects = () => {
         { name: "Socket.io", icon: SiSocketdotio },
         { name: "MongoDB", icon: SiMongodb },
       ],
-      colorScheme: "cyan",
+      colorScheme: "teal",
       githubUrl: "https://github.com/Spidy394/Konvo.git",
       liveUrl: "https://konvo-tme9.onrender.com/",
       type: "both",
@@ -158,7 +166,7 @@ const Projects = () => {
         },
         { name: "MongoDB", icon: SiMongodb },
       ],
-      colorScheme: "purple",
+      colorScheme: "pink",
       githubUrl: "https://github.com/Spidy394/AmarVoice.git",
       liveUrl: "https://amar-voice.vercel.app/",
       type: "both",
@@ -233,148 +241,163 @@ const Projects = () => {
           ),
         },
       ],
-      colorScheme: "green",
+      colorScheme: "emerald",
       githubUrl: "https://github.com/Spidy394/Nexora",
       liveUrl: "https://nexora-delta-three.vercel.app/",
       type: "both",
     },
+    {
+      id: 5,
+      title: "JobFit - Smart Resume Optimization",
+      icon: () => (
+        <img
+          src="https://job-fit-tau.vercel.app/favicon.ico"
+          alt="JobFit"
+          className="size-8 rounded"
+        />
+      ),
+      iconColor: "text-red-400",
+      description:
+        "An AI-powered platform that helps job seekers optimize their resumes for specific job postings. Features intelligent keyword matching, ATS compatibility scoring, personalized suggestions, and resume formatting tools. Built to bridge the gap between candidate qualifications and employer expectations using advanced AI algorithms.",
+      technologies: [
+        { name: "TypeScript", icon: SiTypescript },
+        { name: "React", icon: SiReact },
+        {
+          name: "React Router",
+          icon: () => (
+            <img
+              src="https://reactrouter.com/favicon-dark.png"
+              alt="react-router"
+              className="size-5"
+            />
+          ),
+        },
+        { name: "TailwindCSS", icon: SiTailwindcss },
+        {
+          name: "Puter.js",
+          icon: () => (
+            <img
+              src="https://developer.puter.com/favicons/favicon-32x32.png"
+              alt="puterjs"
+              className="size-5"
+            />
+          ),
+        },
+      ],
+      colorScheme: "red",
+      githubUrl: "https://github.com/Spidy394/JobFit",
+      liveUrl: "https://job-fit-tau.vercel.app/",
+      type: "both",
+    },
   ];
-  const renderProjectCard = (project) => (
-    <div
-      key={project.id}
-      className={`project-card p-8 rounded-lg border border-white/10 hover:-translate-y-1 transition-all duration-300 bg-gray-900/30 backdrop-blur-sm break-inside-avoid ${
-        project.colorScheme === "blue"
-          ? "hover:border-blue-500/30 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)]"
-          : project.colorScheme === "cyan"
-          ? "hover:border-cyan-500/30 hover:shadow-[0_2px_8px_rgba(34,211,238,0.2)]"
-          : project.colorScheme === "purple"
-          ? "hover:border-purple-500/30 hover:shadow-[0_2px_8px_rgba(168,85,247,0.2)]"
-          : "hover:border-green-500/30 hover:shadow-[0_2px_8px_rgba(34,197,94,0.2)]"
-      }`}
-    >
-      {" "}
-      <h3 className="text-xl font-bold mb-4 text-white flex items-center gap-2">
-        {typeof project.icon === "function" ? (
-          <div
-            className={`${project.iconColor} flex items-center justify-center`}
-          >
-            <project.icon />
-          </div>
-        ) : (
-          <project.icon className={`${project.iconColor} text-2xl`} />
-        )}
-        {project.title}
-      </h3>
-      <p className="text-gray-400 mb-8 leading-relaxed">
-        {project.description}
-      </p>
-      {/* Technologies */}
-      <div className="flex flex-wrap gap-3 mb-8">
-        {project.technologies.map((tech, index) => {
-          const IconComponent = tech.icon;
-          return (
-            <div key={index} className="relative group">
-              <span
-                className={`py-2 px-4 rounded-full text-sm font-medium transition-all cursor-default flex items-center gap-2 ${
-                  project.colorScheme === "blue"
-                    ? "bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.1)]"
-                    : project.colorScheme === "cyan"
-                    ? "bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20 hover:shadow-[0_2px_8px_rgba(34,211,238,0.1)]"
-                    : project.colorScheme === "purple"
-                    ? "bg-purple-500/10 text-purple-400 hover:bg-purple-500/20 hover:shadow-[0_2px_8px_rgba(168,85,247,0.1)]"
-                    : "bg-green-500/10 text-green-400 hover:bg-green-500/20 hover:shadow-[0_2px_8px_rgba(34,197,94,0.1)]"
-                }`}
-              >
-                {IconComponent && (
-                  <IconComponent
-                    size={16}
-                    className={`${getIconColor(tech.name)}`}
-                  />
-                )}
-                {tech.name}
-              </span>
+  const renderProjectCard = (project) => {
+    return (
+      <div
+        key={project.id}
+        className={`project-card p-8 rounded-lg border border-white/10 hover:-translate-y-1 transition-all duration-300 bg-gray-900/30 backdrop-blur-sm break-inside-avoid ${getCardHoverClasses(
+          project.colorScheme
+        )}`}
+      >
+        {" "}
+        <h3 className="text-xl font-bold mb-4 text-white flex items-center gap-2">
+          {typeof project.icon === "function" ? (
+            <div
+              className={`${project.iconColor} flex items-center justify-center`}
+            >
+              <project.icon />
             </div>
-          );
-        })}
-      </div>
-      {/* Action Button */}
-      <div className="mt-auto">
-        {project.type === "both" ? (
-          <div className="flex gap-3">
+          ) : (
+            <project.icon className={`${project.iconColor} text-2xl`} />
+          )}
+          {project.title}
+        </h3>
+        <p className="text-gray-400 mb-8 leading-relaxed">
+          {project.description}
+        </p>
+        {/* Technologies */}
+        <div className="flex flex-wrap gap-3 mb-8">
+          {project.technologies.map((tech, index) => {
+            const IconComponent = tech.icon;
+            return (
+              <div key={index} className="relative group">
+                <span
+                  className={`py-2 px-4 rounded-full text-sm font-medium transition-all cursor-default flex items-center gap-2 ${getTechBadgeClasses(
+                    project.colorScheme
+                  )}`}
+                >
+                  {IconComponent && (
+                    <IconComponent
+                      size={16}
+                      className={`${getIconColor(tech.name)}`}
+                    />
+                  )}
+                  {tech.name}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+        {/* Action Button */}
+        <div className="mt-auto">
+          {project.type === "both" ? (
+            <div className="flex gap-3">
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-2 transition-all duration-300 font-medium px-4 py-2.5 rounded-lg group ${getButtonClasses(
+                  project.colorScheme
+                )}`}
+              >
+                <FiGithub className="text-lg group-hover:scale-110 transition-transform duration-300" />
+                <span>Source</span>
+                <span className="group-hover:translate-x-1 transition-transform duration-300">
+                  →
+                </span>
+              </a>
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-2 transition-all duration-300 font-medium px-4 py-2.5 rounded-lg group ${getButtonClasses(
+                  project.colorScheme
+                )}`}
+              >
+                <FiExternalLink className="text-lg group-hover:scale-110 transition-transform duration-300" />
+                <span>Live Demo</span>
+                <span className="group-hover:translate-x-1 transition-transform duration-300">
+                  →
+                </span>
+              </a>
+            </div>
+          ) : (
             <a
-              href={project.githubUrl}
+              href={
+                project.type === "github" ? project.githubUrl : project.liveUrl
+              }
               target="_blank"
               rel="noopener noreferrer"
-              className={`inline-flex items-center gap-2 transition-all duration-300 font-medium px-4 py-2.5 rounded-lg group ${
-                project.colorScheme === "blue"
-                  ? "bg-blue-500/10 text-blue-400 hover:text-blue-300 hover:bg-blue-500/20 border border-blue-500/20 hover:border-blue-500/40 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)]"
-                  : project.colorScheme === "cyan"
-                  ? "bg-cyan-500/10 text-cyan-400 hover:text-cyan-300 hover:bg-cyan-500/20 border border-cyan-500/20 hover:border-cyan-500/40 hover:shadow-[0_2px_8px_rgba(34,211,238,0.2)]"
-                  : project.colorScheme === "purple"
-                  ? "bg-purple-500/10 text-purple-400 hover:text-purple-300 hover:bg-purple-500/20 border border-purple-500/20 hover:border-purple-500/40 hover:shadow-[0_2px_8px_rgba(168,85,247,0.2)]"
-                  : "bg-green-500/10 text-green-400 hover:text-green-300 hover:bg-green-500/20 border border-green-500/20 hover:border-green-500/40 hover:shadow-[0_2px_8px_rgba(34,197,94,0.2)]"
-              }`}
+              className={`inline-flex items-center gap-2 transition-all duration-300 font-medium px-4 py-2.5 rounded-lg group ${getButtonClasses(
+                project.colorScheme
+              )}`}
             >
-              <FiGithub className="text-lg group-hover:scale-110 transition-transform duration-300" />
-              <span>Source</span>
+              {project.type === "github" ? (
+                <FiGithub className="text-lg group-hover:scale-110 transition-transform duration-300" />
+              ) : (
+                <FiExternalLink className="text-lg group-hover:scale-110 transition-transform duration-300" />
+              )}
+              <span>
+                {project.type === "github" ? "View Source" : "Live Demo"}
+              </span>
               <span className="group-hover:translate-x-1 transition-transform duration-300">
                 →
               </span>
             </a>
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`inline-flex items-center gap-2 transition-all duration-300 font-medium px-4 py-2.5 rounded-lg group ${
-                project.colorScheme === "blue"
-                  ? "bg-blue-500/10 text-blue-400 hover:text-blue-300 hover:bg-blue-500/20 border border-blue-500/20 hover:border-blue-500/40 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)]"
-                  : project.colorScheme === "cyan"
-                  ? "bg-cyan-500/10 text-cyan-400 hover:text-cyan-300 hover:bg-cyan-500/20 border border-cyan-500/20 hover:border-cyan-500/40 hover:shadow-[0_2px_8px_rgba(34,211,238,0.2)]"
-                  : project.colorScheme === "purple"
-                  ? "bg-purple-500/10 text-purple-400 hover:text-purple-300 hover:bg-purple-500/20 border border-purple-500/20 hover:border-purple-500/40 hover:shadow-[0_2px_8px_rgba(168,85,247,0.2)]"
-                  : "bg-green-500/10 text-green-400 hover:text-green-300 hover:bg-green-500/20 border border-green-500/20 hover:border-green-500/40 hover:shadow-[0_2px_8px_rgba(34,197,94,0.2)]"
-              }`}
-            >
-              <FiExternalLink className="text-lg group-hover:scale-110 transition-transform duration-300" />
-              <span>Live Demo</span>
-              <span className="group-hover:translate-x-1 transition-transform duration-300">
-                →
-              </span>
-            </a>
-          </div>
-        ) : (
-          <a
-            href={
-              project.type === "github" ? project.githubUrl : project.liveUrl
-            }
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`inline-flex items-center gap-2 transition-all duration-300 font-medium px-4 py-2.5 rounded-lg group ${
-              project.colorScheme === "blue"
-                ? "bg-blue-500/10 text-blue-400 hover:text-blue-300 hover:bg-blue-500/20 border border-blue-500/20 hover:border-blue-500/40 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)]"
-                : project.colorScheme === "cyan"
-                ? "bg-cyan-500/10 text-cyan-400 hover:text-cyan-300 hover:bg-cyan-500/20 border border-cyan-500/20 hover:border-cyan-500/40 hover:shadow-[0_2px_8px_rgba(34,211,238,0.2)]"
-                : project.colorScheme === "purple"
-                ? "bg-purple-500/10 text-purple-400 hover:text-purple-300 hover:bg-purple-500/20 border border-purple-500/20 hover:border-purple-500/40 hover:shadow-[0_2px_8px_rgba(168,85,247,0.2)]"
-                : "bg-green-500/10 text-green-400 hover:text-green-300 hover:bg-green-500/20 border border-green-500/20 hover:border-green-500/40 hover:shadow-[0_2px_8px_rgba(34,197,94,0.2)]"
-            }`}
-          >
-            {project.type === "github" ? (
-              <FiGithub className="text-lg group-hover:scale-110 transition-transform duration-300" />
-            ) : (
-              <FiExternalLink className="text-lg group-hover:scale-110 transition-transform duration-300" />
-            )}
-            <span>
-              {project.type === "github" ? "View Source" : "Live Demo"}
-            </span>
-            <span className="group-hover:translate-x-1 transition-transform duration-300">
-              →
-            </span>
-          </a>
-        )}
+          )}
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
   return (
     <section
       id="projects"
