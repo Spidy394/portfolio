@@ -25,11 +25,14 @@ import {
 
 const Projects = () => {
   const [hoveredProject, setHoveredProject] = useState(null);
+  const [clickedProject, setClickedProject] = useState(null);
 
   // Masonry breakpoints for responsive layout
   const breakpointColumnsObj = {
     default: 2,
+    1024: 2,
     768: 1,
+    640: 1,
   };
   const getIconColor = (techName) => {
     switch (techName.toLowerCase()) {
@@ -302,21 +305,30 @@ const Projects = () => {
   ];
   const renderProjectCard = (project) => {
     const isHovered = hoveredProject === project.id;
+    const isClicked = clickedProject === project.id;
+    const showPreview = isHovered || isClicked;
+
+    const handleCardClick = () => {
+      // Toggle clicked state for mobile
+      setClickedProject((prev) => (prev === project.id ? null : project.id));
+    };
 
     return (
       <motion.div
         key={project.id}
-        className={`project-card p-8 rounded-lg border border-white/10 transition-all duration-300 bg-gray-900/30 backdrop-blur-sm break-inside-avoid ${getCardHoverClasses(
+        className={`project-card p-4 sm:p-6 lg:p-8 rounded-lg border border-white/10 transition-all duration-300 bg-gray-900/30 backdrop-blur-sm break-inside-avoid cursor-pointer ${getCardHoverClasses(
           project.colorScheme
         )}`}
         onHoverStart={() => setHoveredProject(project.id)}
         onHoverEnd={() => setHoveredProject(null)}
+        onClick={handleCardClick}
         whileHover={{ y: -8 }}
+        whileTap={{ scale: 0.98 }}
         layout
         transition={{ duration: 0.3, ease: "easeOut" }}
       >
         {/* Project Title */}
-        <h3 className="text-xl font-bold mb-4 text-white flex items-center gap-2">
+        <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-white flex items-center gap-2">
           {typeof project.icon === "function" ? (
             <div
               className={`${project.iconColor} flex items-center justify-center`}
@@ -324,14 +336,18 @@ const Projects = () => {
               <project.icon />
             </div>
           ) : (
-            <project.icon className={`${project.iconColor} text-2xl`} />
+            <project.icon
+              className={`${project.iconColor} text-xl sm:text-2xl`}
+            />
           )}
-          {project.title}
+          <span className="flex-1 text-sm sm:text-lg lg:text-xl">
+            {project.title}
+          </span>
         </h3>
 
         {/* Expandable Preview Section */}
         <AnimatePresence>
-          {isHovered && (
+          {showPreview && (
             <motion.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
@@ -349,7 +365,7 @@ const Projects = () => {
                 <img
                   src={project.previewImage}
                   alt={`${project.title} preview`}
-                  className="w-full h-40 object-cover rounded-lg"
+                  className="w-full h-32 sm:h-36 lg:h-40 object-cover rounded-lg"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent rounded-lg" />
               </motion.div>
@@ -358,28 +374,28 @@ const Projects = () => {
         </AnimatePresence>
 
         {/* Project Description */}
-        <p className="text-gray-400 mb-8 leading-relaxed">
+        <p className="text-gray-400 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">
           {project.description}
         </p>
 
         {/* Technologies */}
-        <div className="flex flex-wrap gap-3 mb-8">
+        <div className="flex flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-8">
           {project.technologies.map((tech, index) => {
             const IconComponent = tech.icon;
             return (
               <div key={index} className="relative group">
                 <span
-                  className={`py-2 px-4 rounded-full text-sm font-medium transition-all cursor-default flex items-center gap-2 ${getTechBadgeClasses(
+                  className={`py-1.5 px-3 sm:py-2 sm:px-4 rounded-full text-xs sm:text-sm font-medium transition-all cursor-default flex items-center gap-1.5 sm:gap-2 ${getTechBadgeClasses(
                     project.colorScheme
                   )}`}
                 >
                   {IconComponent && (
                     <IconComponent
-                      size={16}
-                      className={`${getIconColor(tech.name)}`}
+                      size={14}
+                      className={`sm:w-4 sm:h-4 ${getIconColor(tech.name)}`}
                     />
                   )}
-                  {tech.name}
+                  <span className="text-xs sm:text-sm">{tech.name}</span>
                 </span>
               </div>
             );
@@ -389,16 +405,16 @@ const Projects = () => {
         {/* Action Buttons */}
         <div className="mt-auto">
           {project.type === "both" ? (
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
               <a
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 transition-all duration-300 font-medium px-4 py-2.5 rounded-lg group ${getButtonClasses(
+                className={`inline-flex items-center justify-center gap-2 transition-all duration-300 font-medium px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg group text-sm sm:text-base ${getButtonClasses(
                   project.colorScheme
                 )}`}
               >
-                <FiGithub className="text-lg group-hover:scale-110 transition-transform duration-300" />
+                <FiGithub className="text-base sm:text-lg group-hover:scale-110 transition-transform duration-300" />
                 <span>Source</span>
                 <span className="group-hover:translate-x-1 transition-transform duration-300">
                   →
@@ -408,11 +424,11 @@ const Projects = () => {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 transition-all duration-300 font-medium px-4 py-2.5 rounded-lg group ${getButtonClasses(
+                className={`inline-flex items-center justify-center gap-2 transition-all duration-300 font-medium px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg group text-sm sm:text-base ${getButtonClasses(
                   project.colorScheme
                 )}`}
               >
-                <FiExternalLink className="text-lg group-hover:scale-110 transition-transform duration-300" />
+                <FiExternalLink className="text-base sm:text-lg group-hover:scale-110 transition-transform duration-300" />
                 <span>Live Demo</span>
                 <span className="group-hover:translate-x-1 transition-transform duration-300">
                   →
@@ -426,14 +442,14 @@ const Projects = () => {
               }
               target="_blank"
               rel="noopener noreferrer"
-              className={`inline-flex items-center gap-2 transition-all duration-300 font-medium px-4 py-2.5 rounded-lg group ${getButtonClasses(
+              className={`inline-flex items-center justify-center gap-2 transition-all duration-300 font-medium px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg group text-sm sm:text-base w-full sm:w-auto ${getButtonClasses(
                 project.colorScheme
               )}`}
             >
               {project.type === "github" ? (
-                <FiGithub className="text-lg group-hover:scale-110 transition-transform duration-300" />
+                <FiGithub className="text-base sm:text-lg group-hover:scale-110 transition-transform duration-300" />
               ) : (
-                <FiExternalLink className="text-lg group-hover:scale-110 transition-transform duration-300" />
+                <FiExternalLink className="text-base sm:text-lg group-hover:scale-110 transition-transform duration-300" />
               )}
               <span>
                 {project.type === "github" ? "View Source" : "Live Demo"}
@@ -450,12 +466,17 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="min-h-screen flex items-center justify-center py-24"
+      className="min-h-screen flex items-center justify-center py-12 sm:py-16 lg:py-24"
+      onClick={(e) => {
+        // Close preview if clicking outside project cards
+        if (e.target === e.currentTarget) {
+          setClickedProject(null);
+        }
+      }}
     >
-      {" "}
       <RevealOnScroll>
-        <div className="max-w-5xl xl:max-w-6xl mx-auto px-6 lg:px-8 xl:px-12">
-          <h2 className="text-3xl font-bold mb-16 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 lg:mb-16 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent text-center">
             Featured Projects
           </h2>
           <Masonry
