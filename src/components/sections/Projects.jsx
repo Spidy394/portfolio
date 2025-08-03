@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import RevealOnScroll from "../RevealOnScroll";
 import Masonry from "react-masonry-css";
+import { motion, AnimatePresence } from "motion/react";
 import {
   SiJavascript,
   SiReact,
@@ -23,6 +24,8 @@ import {
 } from "../../utils/colorSchemes";
 
 const Projects = () => {
+  const [hoveredProject, setHoveredProject] = useState(null);
+
   // Masonry breakpoints for responsive layout
   const breakpointColumnsObj = {
     default: 2,
@@ -55,7 +58,9 @@ const Projects = () => {
       default:
         return "text-gray-400";
     }
-  }; // Project data array for better organization
+  };
+
+  // Project data array for better organization
   const projects = [
     {
       id: 1,
@@ -64,6 +69,7 @@ const Projects = () => {
       iconColor: "text-blue-400",
       description:
         "An AI-powered virtual companion designed to engage users in natural, voice-based conversations. Listens to user speech, transcribes it to text, and responds with contextually appropriate replies in a warm, expressive voice.",
+      previewImage: "/portfolio/rupa-review.png",
       technologies: [
         {
           name: "Python",
@@ -98,6 +104,7 @@ const Projects = () => {
       iconColor: "text-cyan-400",
       description:
         "A modern full-stack real-time chat application developed to demonstrate proficiency in building scalable communication platforms. Leveraging React 19 for the frontend and Node.js/Express for the backend, the application features WebSocket-powered messaging via Socket.io, JWT authentication, and MongoDB-based message persistence.",
+      previewImage: "/portfolio/konvo-preview.png",
       technologies: [
         { name: "JavaScript", icon: SiJavascript },
         { name: "React", icon: SiReact },
@@ -135,6 +142,7 @@ const Projects = () => {
       iconColor: "text-purple-400",
       description:
         "A full-stack platform built to empower the people with transparent, AI-driven complaint submission and resolution. Users can raise voice or text-based complaints, track them in real time, and engage with the community. Features include Gemini-powered categorization, ai powered transcription and translation.",
+      previewImage: "/portfolio/amarVoice-preview.png",
       technologies: [
         { name: "JavaScript", icon: SiJavascript },
         { name: "Next.js", icon: RiNextjsFill },
@@ -184,6 +192,7 @@ const Projects = () => {
       iconColor: "text-purple-400",
       description:
         "A comprehensive AI content creation platform designed to revolutionize your workflow. Features include AI article writing, blog title generation, image creation, background removal, object removal, and resume reviewing. Built with cutting-edge AI technology to help creators produce high-quality content faster and more efficiently.",
+      previewImage: "/portfolio/nexora-preview.png",
       technologies: [
         { name: "JavaScript", icon: SiJavascript },
         { name: "React", icon: SiReact },
@@ -259,6 +268,7 @@ const Projects = () => {
       iconColor: "text-red-400",
       description:
         "An AI-powered platform that helps job seekers optimize their resumes for specific job postings. Features intelligent keyword matching, ATS compatibility scoring, personalized suggestions, and resume formatting tools. Built to bridge the gap between candidate qualifications and employer expectations using advanced AI algorithms.",
+      previewImage: "/portfolio/JobFit-preview.png",
       technologies: [
         { name: "TypeScript", icon: SiTypescript },
         { name: "React", icon: SiReact },
@@ -291,14 +301,21 @@ const Projects = () => {
     },
   ];
   const renderProjectCard = (project) => {
+    const isHovered = hoveredProject === project.id;
+    
     return (
-      <div
+      <motion.div
         key={project.id}
-        className={`project-card p-8 rounded-lg border border-white/10 hover:-translate-y-1 transition-all duration-300 bg-gray-900/30 backdrop-blur-sm break-inside-avoid ${getCardHoverClasses(
+        className={`project-card p-8 rounded-lg border border-white/10 transition-all duration-300 bg-gray-900/30 backdrop-blur-sm break-inside-avoid ${getCardHoverClasses(
           project.colorScheme
         )}`}
+        onHoverStart={() => setHoveredProject(project.id)}
+        onHoverEnd={() => setHoveredProject(null)}
+        whileHover={{ y: -8 }}
+        layout
+        transition={{ duration: 0.3, ease: "easeOut" }}
       >
-        {" "}
+        {/* Project Title */}
         <h3 className="text-xl font-bold mb-4 text-white flex items-center gap-2">
           {typeof project.icon === "function" ? (
             <div
@@ -311,9 +328,40 @@ const Projects = () => {
           )}
           {project.title}
         </h3>
+
+        {/* Expandable Preview Section */}
+        <AnimatePresence>
+          {isHovered && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="overflow-hidden mb-6"
+            >
+              <motion.div
+                initial={{ y: -20 }}
+                animate={{ y: 0 }}
+                exit={{ y: -20 }}
+                transition={{ duration: 0.3, delay: 0.1 }}
+                className="relative rounded-lg overflow-hidden"
+              >
+                <img
+                  src={project.previewImage}
+                  alt={`${project.title} preview`}
+                  className="w-full h-40 object-cover rounded-lg"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent rounded-lg" />
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Project Description */}
         <p className="text-gray-400 mb-8 leading-relaxed">
           {project.description}
         </p>
+
         {/* Technologies */}
         <div className="flex flex-wrap gap-3 mb-8">
           {project.technologies.map((tech, index) => {
@@ -337,7 +385,8 @@ const Projects = () => {
             );
           })}
         </div>
-        {/* Action Button */}
+
+        {/* Action Buttons */}
         <div className="mt-auto">
           {project.type === "both" ? (
             <div className="flex gap-3">
@@ -395,7 +444,7 @@ const Projects = () => {
             </a>
           )}
         </div>
-      </div>
+      </motion.div>
     );
   };
   return (

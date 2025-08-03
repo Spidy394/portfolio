@@ -115,7 +115,10 @@ const skillsData = {
     title: "Cloud & Hosting",
     titleIcon: HiCloud,
     skills: [
-      { name: "Vercel", icon: SiVercel },
+      {
+        name: "Vercel",
+        icon: () => <SiVercel className="w-6 h-6 text-white" />,
+      },
       {
         name: "Render",
         icon: () => (
