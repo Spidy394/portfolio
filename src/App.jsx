@@ -32,6 +32,9 @@ const App = () => {
             <Contact />
           </Suspense>
         </div>
+        <footer className="w-full text-center py-4 text-gray-500 text-sm absolute bottom-0 left-0 z-20">
+          Shubhodeep Mondal © 2025. All rights reserved.
+        </footer>
       </div>
     </>
   )
