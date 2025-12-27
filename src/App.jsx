@@ -1,4 +1,4 @@
-import React, { useState, Suspense, lazy } from 'react'
+import { useState, Suspense, lazy } from 'react'
 import LoadingScreen from './components/LoadingScreen'
 import StarField from './components/StarField'
 import Navbar from './components/Navbar';

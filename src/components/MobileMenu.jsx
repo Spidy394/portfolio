@@ -1,4 +1,3 @@
-import React from "react";
 import { scrollToSection } from '../utils/smoothScroll';
 import { HiHome, HiUser, HiFolderOpen, HiMail, HiX } from 'react-icons/hi';
 

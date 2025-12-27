@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import RevealOnScroll from '../RevealOnScroll'
 import emailjs from '@emailjs/browser';
 import { HiUser, HiChatBubbleLeftRight, HiPaperAirplane } from 'react-icons/hi2';
-import { MdEmail, MdHandshake } from 'react-icons/md';
 import { HiMail } from 'react-icons/hi';
 import { FiUsers } from 'react-icons/fi';
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 
 const RevealOnScroll = ({ children }) => {
   const ref = useRef(null)

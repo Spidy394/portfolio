@@ -1,0 +1,115 @@
+import {
+  SiC,
+  SiCplusplus,
+  SiJavascript,
+  SiTypescript,
+  SiReact,
+  SiTailwindcss,
+  SiNodedotjs,
+  SiExpress,
+  SiMongodb,
+  SiPostgresql,
+  SiPrisma,
+  SiGit,
+  SiPostman,
+  SiFastapi,
+  SiDocker,
+  SiNextdotjs,
+  SiGithubactions,
+  SiVercel,
+  SiBun,
+  SiRedis,
+  SiNpm,
+} from "react-icons/si";
+import {
+  HiCode,
+  HiDesktopComputer,
+  HiServer,
+  HiCog,
+  HiDatabase,
+  HiCloud,
+  HiCube,
+} from "react-icons/hi";
+import { FaGithub } from "react-icons/fa";
+
+export const getSkillsData = (customIcons) => ({
+  languages: {
+    title: "Languages",
+    titleIcon: HiCode,
+    skills: [
+      { name: "C", icon: SiC },
+      { name: "C++", icon: SiCplusplus },
+      { name: "Python", icon: customIcons.Python },
+      { name: "JavaScript", icon: SiJavascript },
+      { name: "TypeScript", icon: SiTypescript },
+    ],
+  },
+  frontend: {
+    title: "Frontend",
+    titleIcon: HiDesktopComputer,
+    skills: [
+      { name: "React", icon: SiReact },
+      { name: "Vite", icon: customIcons.Vite },
+      { name: "Next.js", icon: SiNextdotjs },
+      { name: "TailwindCSS", icon: SiTailwindcss },
+    ],
+  },
+  backend: {
+    title: "Backend",
+    titleIcon: HiServer,
+    skills: [
+      { name: "Node.js", icon: SiNodedotjs },
+      { name: "Bun", icon: SiBun },
+      { name: "Express.js", icon: SiExpress },
+      { name: "FastAPI", icon: SiFastapi },
+      { name: "Firebase", icon: customIcons.Firebase },
+    ],
+  },
+  database: {
+    title: "Database",
+    titleIcon: HiDatabase,
+    skills: [
+      { name: "MongoDB", icon: SiMongodb },
+      { name: "PostgreSQL", icon: SiPostgresql },
+      { name: "Prisma", icon: SiPrisma },
+      { name: "Redis", icon: SiRedis },
+      { name: "Neon", icon: customIcons.Neon },
+    ],
+  },
+  devops: {
+    title: "DevOps & Tools",
+    titleIcon: HiCog,
+    skills: [
+      { name: "Git", icon: SiGit },
+      { name: "GitHub", icon: FaGithub },
+      { name: "VS Code", icon: customIcons.VSCode },
+      { name: "npm", icon: SiNpm },
+      { name: "pnpm", icon: customIcons.Pnpm },
+      { name: "yarn", icon: customIcons.Yarn },
+      { name: "Docker", icon: SiDocker },
+      { name: "GitHub Actions", icon: SiGithubactions },
+      { name: "YAML", icon: customIcons.YAML },
+      { name: "Postman", icon: SiPostman },
+    ],
+  },
+  cloud: {
+    title: "Cloud & Hosting",
+    titleIcon: HiCloud,
+    skills: [
+      { name: "Vercel", icon: customIcons.Vercel(SiVercel) },
+      { name: "Render", icon: customIcons.Render },
+      { name: "Railway", icon: customIcons.Railway },
+    ],
+  },
+  web3: {
+    title: "Web3 & Blockchain",
+    titleIcon: HiCube,
+    skills: [
+      { name: "Solidity", icon: customIcons.Solidity },
+      { name: "Ethereum", icon: customIcons.Ethereum },
+      { name: "Hardhat", icon: customIcons.Hardhat },
+      { name: "MetaMask", icon: customIcons.MetaMask },
+      { name: "IPFS", icon: customIcons.IPFS },
+    ],
+  },
+});

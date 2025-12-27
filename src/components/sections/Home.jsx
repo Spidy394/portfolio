@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import RevealOnScroll from "../RevealOnScroll";
 import TypewriterText from "../TypewriterText";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
@@ -69,7 +69,7 @@ const Home = () => {
               <span className="relative z-10">Contact Me</span>
               <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/30 to-blue-400/30 rounded-lg blur opacity-0 group-hover:opacity-50 transition-all duration-300 -z-10"></div>
             </a>            <a
-              href="https://drive.google.com/file/d/17EVWkguyNa9NgJS3nzu3wxRGV50l_6Sq/view?usp=sharing"
+              href="https://drive.google.com/file/d/1_KKPOyGIQEw9FiDCtFoiKNxv3SKACuSK/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="border border-cyan-500/50 text-cyan-400 py-3 px-8 rounded-lg font-medium transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_35px_rgba(34,211,238,0.3)] hover:bg-cyan-500/15 hover:border-cyan-400 hover:text-cyan-300 text-sm sm:text-base backdrop-blur-sm group relative overflow-hidden flex items-center gap-2 justify-center"

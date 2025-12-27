@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 const TypewriterText = ({ text, delay = 100, className = "", startAnimation = false }) => {
   const [currentText, setCurrentText] = useState('');

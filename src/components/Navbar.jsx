@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { scrollToSection } from '../utils/smoothScroll';
 import { HiHome, HiUser, HiFolderOpen, HiMail, HiMenuAlt3, HiX } from 'react-icons/hi';
 
