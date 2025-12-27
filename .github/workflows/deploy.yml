@@ -22,7 +22,7 @@ jobs:
         run: npm ci
 
       - name: Build Project
-        run: npm predeploy
+        run: npm run predeploy
 
       - name: Deploy Project
         run: npm run deploy
