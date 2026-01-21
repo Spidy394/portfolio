@@ -11,7 +11,11 @@ const StarField = () => {
   const initStars = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const numStars = Math.floor((canvas.width * canvas.height) / 8000);
+    // Reduce star count on mobile for better performance
+    const isMobile = window.innerWidth < 640;
+    const numStars = isMobile 
+      ? Math.floor((canvas.width * canvas.height) / 15000)
+      : Math.floor((canvas.width * canvas.height) / 8000);
     starsRef.current = [];
     for (let i = 0; i < numStars; i++) {
       starsRef.current.push({

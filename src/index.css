@@ -9,6 +9,33 @@ body {
   background-attachment: fixed;
   color: #f3f4f6;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 639px) {
+  html,
+  body {
+    background-attachment: scroll; /* Better performance on mobile */
+  }
+}
+
+/* Optimize hardware acceleration */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.reveal,
+.reveal.visible {
+  will-change: opacity, transform;
+}
+
+@media (max-width: 639px) {
+  .reveal,
+  .reveal.visible {
+    will-change: auto; /* Reduce GPU usage on mobile */
+  }
 }
 
 /* Base container class for consistent max-width and padding */
@@ -208,4 +235,28 @@ p {
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Mobile-specific performance optimizations */
+@media (max-width: 639px) {
+  .reveal {
+    transform: translateY(10px); /* Reduced distance on mobile */
+    transition: opacity 0.4s ease, transform 0.4s ease; /* Faster animations */
+  }
+  
+  /* Reduce backdrop-blur on mobile for better performance */
+  .backdrop-blur-sm {
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+  }
+  
+  /* Disable hover effects on mobile */
+  .hover\:-translate-y-1:hover {
+    transform: none;
+  }
+  
+  /* Simplify shadows on mobile */
+  [class*="hover:shadow-"]:hover {
+    box-shadow: none;
+  }
 }

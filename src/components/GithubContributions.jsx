@@ -21,7 +21,28 @@ export default function GithubContributions() {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [blockSize, setBlockSize] = useState(12);
+  const [shouldLoad, setShouldLoad] = useState(false);
   const scrollContainerRef = useRef(null);
+  const componentRef = useRef(null);
+
+  // Defer loading until component is visible
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '100px' }
+    );
+
+    if (componentRef.current) {
+      observer.observe(componentRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   // Responsive block size based on screen width
   useEffect(() => {
@@ -80,11 +101,13 @@ export default function GithubContributions() {
       }
     };
 
-    container.addEventListener('wheel', handleWheel, { passive: false });
-    return () => container.removeEventListener('wheel', handleWheel);
+    container.addEventListener("wheel", handleWheel, { passive: false });
+    return () => container.removeEventListener("wheel", handleWheel);
   }, [contributions]);
 
   useEffect(() => {
+    if (!shouldLoad) return;
+
     async function fetchData() {
       try {
         setIsLoading(true);
@@ -127,13 +150,13 @@ export default function GithubContributions() {
           if (validContributions.length > 0) {
             // Filter to show only the past year
             const filteredContributions = filterLastYear(validContributions);
-            
+
             // Calculate total contributions from filtered data (last year only)
             const total = filteredContributions.reduce(
               (sum, item) => sum + item.count,
               0
             );
-            
+
             setContributions(filteredContributions);
             setTotalContributions(total);
           } else {
@@ -151,19 +174,18 @@ export default function GithubContributions() {
     }
 
     fetchData();
-  }, []);
+  }, [shouldLoad]);
 
   return (
-    <RevealOnScroll>
-      <div className="mt-8 p-6 rounded-xl border border-white/10 hover:-translate-y-1 transition-all duration-300 hover:border-green-500/30 hover:shadow-[0_2px_8px_rgba(34,197,94,0.2)] bg-gray-900/30 backdrop-blur-sm">
+    <div ref={componentRef} className="mt-6 sm:mt-8 p-4 sm:p-6 rounded-xl border border-white/10 transition-all duration-300 hover:border-green-500/30 hover:shadow-[0_2px_8px_rgba(34,197,94,0.2)] bg-gray-900/30 backdrop-blur-[2px] sm:backdrop-blur-sm">
         {/* Header */}
-        <div className="mb-6">
-          <h3 className="text-xl font-bold flex items-center gap-2 text-white mb-2">
-            <FaGithub className="text-2xl text-green-400" />
+        <div className="mb-4 sm:mb-6">
+          <h3 className="text-lg sm:text-xl font-bold flex items-center gap-2 text-white mb-2">
+            <FaGithub className="text-xl sm:text-2xl text-green-400" />
             {githubConfig.title}
           </h3>
           {!isLoading && !hasError && totalContributions > 0 && (
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-400 text-xs sm:text-sm">
               Total:{" "}
               <span className="text-green-400 font-bold">
                 {totalContributions.toLocaleString()}
@@ -175,32 +197,32 @@ export default function GithubContributions() {
 
         {/* Content */}
         {isLoading ? (
-          <div className="flex items-center justify-center py-16">
+          <div className="flex items-center justify-center py-12 sm:py-16">
             <div className="text-center">
-              <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-2 border-green-500/30 border-t-green-500"></div>
-              <p className="text-gray-400 text-sm">
+              <div className="mx-auto mb-3 sm:mb-4 h-6 w-6 sm:h-8 sm:w-8 animate-spin rounded-full border-2 border-green-500/30 border-t-green-500"></div>
+              <p className="text-gray-400 text-xs sm:text-sm">
                 {githubConfig.loadingState.description}
               </p>
             </div>
           </div>
         ) : hasError || contributions.length === 0 ? (
-          <div className="text-center py-12">
-            <div className="bg-gray-800/50 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-white/10">
-              <FaGithub className="h-8 w-8 text-gray-400" />
+          <div className="text-center py-8 sm:py-12">
+            <div className="bg-gray-800/50 mx-auto mb-3 sm:mb-4 flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-full border border-white/10">
+              <FaGithub className="h-6 w-6 sm:h-8 sm:w-8 text-gray-400" />
             </div>
-            <p className="mb-2 font-semibold text-gray-300">
+            <p className="mb-2 font-semibold text-gray-300 text-sm sm:text-base">
               {githubConfig.errorState.title}
             </p>
-            <p className="mb-4 text-sm text-gray-500">
+            <p className="mb-3 sm:mb-4 text-xs sm:text-sm text-gray-500 px-4">
               {githubConfig.errorState.description}
             </p>
             <a
               href={`https://github.com/${githubConfig.username}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800/50 hover:bg-gray-700/50 border border-white/10 hover:border-green-500/30 rounded-lg transition-all duration-300 text-gray-300 hover:text-white text-sm"
+              className="inline-flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2 bg-gray-800/50 hover:bg-gray-700/50 border border-white/10 hover:border-green-500/30 rounded-lg transition-all duration-300 text-gray-300 hover:text-white text-xs sm:text-sm"
             >
-              <FaGithub className="h-4 w-4" />
+              <FaGithub className="h-3 w-3 sm:h-4 sm:w-4" />
               {githubConfig.errorState.buttonText}
             </a>
           </div>
@@ -209,7 +231,7 @@ export default function GithubContributions() {
             {/* Scrollable container with hidden scrollbar */}
             <div
               ref={scrollContainerRef}
-              className="w-full overflow-x-auto smooth-scroll mb-4"
+              className="w-full overflow-x-auto smooth-scroll mb-3 sm:mb-4"
               style={{
                 scrollbarWidth: "none",
                 msOverflowStyle: "none",
@@ -251,35 +273,34 @@ export default function GithubContributions() {
             </div>
 
             {/* Fixed legend outside scroll area */}
-            <div className="flex items-center justify-end gap-2 text-xs text-gray-400">
-              <span>Less</span>
+            <div className="flex items-center justify-end gap-1 sm:gap-2 text-xs text-gray-400">
+              <span className="text-[10px] sm:text-xs">Less</span>
               <div className="flex gap-1">
                 <div
-                  className="w-3 h-3 rounded-sm"
+                  className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm"
                   style={{ backgroundColor: "rgba(17, 24, 39, 0.4)" }}
                 ></div>
                 <div
-                  className="w-3 h-3 rounded-sm"
+                  className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm"
                   style={{ backgroundColor: "rgba(16, 185, 129, 0.3)" }}
                 ></div>
                 <div
-                  className="w-3 h-3 rounded-sm"
+                  className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm"
                   style={{ backgroundColor: "rgba(16, 185, 129, 0.5)" }}
                 ></div>
                 <div
-                  className="w-3 h-3 rounded-sm"
+                  className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm"
                   style={{ backgroundColor: "rgba(16, 185, 129, 0.75)" }}
                 ></div>
                 <div
-                  className="w-3 h-3 rounded-sm"
+                  className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm"
                   style={{ backgroundColor: "rgba(16, 185, 129, 1)" }}
                 ></div>
               </div>
-              <span>More</span>
+              <span className="text-[10px] sm:text-xs">More</span>
             </div>
           </div>
         )}
       </div>
-    </RevealOnScroll>
   );
 }

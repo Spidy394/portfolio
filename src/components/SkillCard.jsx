@@ -32,14 +32,14 @@ const SkillCard = ({ title, titleIcon, skills }) => {
 
   return (
     <div
-      className={`rounded-xl p-6 hover:-translate-y-1 transition-all duration-300 border border-white/10 bg-gray-900/30 backdrop-blur-sm ${getCardHoverClasses(
+      className={`rounded-xl p-4 sm:p-6 transition-all duration-300 border border-white/10 bg-gray-900/30 backdrop-blur-[2px] sm:backdrop-blur-sm ${getCardHoverClasses(
         colorSchemeName
-      )} w-fit min-w-[280px] max-w-[400px] flex-1 h-fit`}
+      )} w-full sm:w-fit sm:min-w-[280px] sm:max-w-[400px] sm:flex-1 h-fit`}
     >
-      <h3 className="text-xl font-bold mb-4 text-white flex items-center gap-2 whitespace-nowrap">
+      <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-white flex items-center gap-2 whitespace-nowrap">
         {titleIcon &&
           React.createElement(titleIcon, {
-            size: 24,
+            size: window.innerWidth < 640 ? 20 : 24,
             className: `transition-all duration-300 hover:scale-110 ${colorScheme.text.secondary}`,
           })}
         {title}

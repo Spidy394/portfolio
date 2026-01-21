@@ -10,7 +10,10 @@ const RevealOnScroll = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    const observer = new window.IntersectionObserver(handleIntersect, { threshold: 0.2, rootMargin: "0px 0px -50px 0px" })
+    const observer = new window.IntersectionObserver(handleIntersect, { 
+      threshold: window.innerWidth < 640 ? 0.1 : 0.2,
+      rootMargin: window.innerWidth < 640 ? "0px" : "0px 0px -50px 0px"
+    })
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, [handleIntersect]);
