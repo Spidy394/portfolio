@@ -9,9 +9,8 @@ import {
   SiShadcnui,
   SiTypescript,
 } from "react-icons/si";
-import { HiMicrophone, HiChatBubbleLeftRight } from "react-icons/hi2";
+import { HiChatBubbleLeftRight } from "react-icons/hi2";
 import { RiNextjsFill } from "react-icons/ri";
-import { BsLightning } from "react-icons/bs";
 
 export const getProjects = (customIcons) => [
   {

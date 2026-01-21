@@ -119,6 +119,6 @@ export const useCustomIcons = () => {
       "https://amar-voice.vercel.app/logo.png",
       "AmarVoice",
       "w-10 h-8 rounded"
-    )
+    ),
   };
 };
