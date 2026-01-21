@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback } from "react";
 
 const StarField = () => {
   const canvasRef = useRef(null);
@@ -13,7 +13,7 @@ const StarField = () => {
     if (!canvas) return;
     // Reduce star count on mobile for better performance
     const isMobile = window.innerWidth < 640;
-    const numStars = isMobile 
+    const numStars = isMobile
       ? Math.floor((canvas.width * canvas.height) / 15000)
       : Math.floor((canvas.width * canvas.height) / 8000);
     starsRef.current = [];
@@ -97,7 +97,7 @@ const StarField = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     let animationFrameId;
 
     // Animation loop
@@ -105,51 +105,75 @@ const StarField = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       // Shooting star timing (every 3-8s, throttled)
       if (
-        currentTime - lastShootingStarTime.current > 3000 + Math.random() * 5000 &&
+        currentTime - lastShootingStarTime.current >
+          3000 + Math.random() * 5000 &&
         shootingStarsRef.current.length < 2 // limit concurrent shooting stars
       ) {
         createShootingStar();
         lastShootingStarTime.current = currentTime;
       }
       // Shooting stars
-      shootingStarsRef.current = shootingStarsRef.current.filter((shootingStar) => {
-        shootingStar.progress += 1 / (shootingStar.duration * 60);
-        if (shootingStar.progress >= 1) return false;
-        const easeOut = 1 - Math.pow(1 - shootingStar.progress, 3);
-        shootingStar.currentX = shootingStar.startX + (shootingStar.endX - shootingStar.startX) * easeOut;
-        shootingStar.currentY = shootingStar.startY + (shootingStar.endY - shootingStar.startY) * easeOut;
-        // Draw trail
-        const gradient = ctx.createLinearGradient(
-          shootingStar.currentX,
-          shootingStar.currentY,
-          shootingStar.currentX - (shootingStar.endX - shootingStar.startX) * 0.1,
-          shootingStar.currentY - (shootingStar.endY - shootingStar.startY) * 0.1
-        );
-        const alpha = shootingStar.opacity * (1 - shootingStar.progress * 0.5);
-        gradient.addColorStop(0, `hsla(${shootingStar.hue}, 70%, 80%, ${alpha})`);
-        gradient.addColorStop(0.5, `hsla(${shootingStar.hue}, 70%, 60%, ${alpha * 0.5})`);
-        gradient.addColorStop(1, `hsla(${shootingStar.hue}, 70%, 40%, 0)`);
-        ctx.save();
-        ctx.strokeStyle = gradient;
-        ctx.lineWidth = shootingStar.size;
-        ctx.lineCap = 'round';
-        ctx.beginPath();
-        ctx.moveTo(shootingStar.currentX, shootingStar.currentY);
-        ctx.lineTo(
-          shootingStar.currentX - (shootingStar.endX - shootingStar.startX) * 0.05,
-          shootingStar.currentY - (shootingStar.endY - shootingStar.startY) * 0.05
-        );
-        ctx.stroke();
-        // Draw head
-        ctx.fillStyle = `hsla(${shootingStar.hue}, 70%, 90%, ${alpha})`;
-        ctx.shadowBlur = shootingStar.size * 3;
-        ctx.shadowColor = `hsl(${shootingStar.hue}, 70%, 70%)`;
-        ctx.beginPath();
-        ctx.arc(shootingStar.currentX, shootingStar.currentY, shootingStar.size, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-        return true;
-      });
+      shootingStarsRef.current = shootingStarsRef.current.filter(
+        (shootingStar) => {
+          shootingStar.progress += 1 / (shootingStar.duration * 60);
+          if (shootingStar.progress >= 1) return false;
+          const easeOut = 1 - Math.pow(1 - shootingStar.progress, 3);
+          shootingStar.currentX =
+            shootingStar.startX +
+            (shootingStar.endX - shootingStar.startX) * easeOut;
+          shootingStar.currentY =
+            shootingStar.startY +
+            (shootingStar.endY - shootingStar.startY) * easeOut;
+          // Draw trail
+          const gradient = ctx.createLinearGradient(
+            shootingStar.currentX,
+            shootingStar.currentY,
+            shootingStar.currentX -
+              (shootingStar.endX - shootingStar.startX) * 0.1,
+            shootingStar.currentY -
+              (shootingStar.endY - shootingStar.startY) * 0.1
+          );
+          const alpha =
+            shootingStar.opacity * (1 - shootingStar.progress * 0.5);
+          gradient.addColorStop(
+            0,
+            `hsla(${shootingStar.hue}, 70%, 80%, ${alpha})`
+          );
+          gradient.addColorStop(
+            0.5,
+            `hsla(${shootingStar.hue}, 70%, 60%, ${alpha * 0.5})`
+          );
+          gradient.addColorStop(1, `hsla(${shootingStar.hue}, 70%, 40%, 0)`);
+          ctx.save();
+          ctx.strokeStyle = gradient;
+          ctx.lineWidth = shootingStar.size;
+          ctx.lineCap = "round";
+          ctx.beginPath();
+          ctx.moveTo(shootingStar.currentX, shootingStar.currentY);
+          ctx.lineTo(
+            shootingStar.currentX -
+              (shootingStar.endX - shootingStar.startX) * 0.05,
+            shootingStar.currentY -
+              (shootingStar.endY - shootingStar.startY) * 0.05
+          );
+          ctx.stroke();
+          // Draw head
+          ctx.fillStyle = `hsla(${shootingStar.hue}, 70%, 90%, ${alpha})`;
+          ctx.shadowBlur = shootingStar.size * 3;
+          ctx.shadowColor = `hsl(${shootingStar.hue}, 70%, 70%)`;
+          ctx.beginPath();
+          ctx.arc(
+            shootingStar.currentX,
+            shootingStar.currentY,
+            shootingStar.size,
+            0,
+            Math.PI * 2
+          );
+          ctx.fill();
+          ctx.restore();
+          return true;
+        }
+      );
       // Stars
       starsRef.current.forEach((star) => {
         star.twinklePhase += star.twinkleSpeed;
@@ -162,9 +186,9 @@ const StarField = () => {
         if (star.y > canvas.height) star.y = 0;
         ctx.save();
         ctx.globalAlpha = star.opacity * twinkle;
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = "#ffffff";
         ctx.shadowBlur = star.size * 2;
-        ctx.shadowColor = '#60a5fa';
+        ctx.shadowColor = "#60a5fa";
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
         ctx.fill();
@@ -176,7 +200,7 @@ const StarField = () => {
     // Initial setup
     resizeCanvas();
     animate();
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       // Throttle resize events
       const now = Date.now();
       if (now - lastResize.current > 200) {
@@ -185,7 +209,7 @@ const StarField = () => {
       }
     });
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener("resize", resizeCanvas);
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
   }, [resizeCanvas, createShootingStar, initStars]);
@@ -194,7 +218,7 @@ const StarField = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 w-full h-full pointer-events-none"
-      style={{ zIndex: 1, background: 'transparent' }}
+      style={{ zIndex: 1, background: "transparent" }}
       aria-hidden="true"
     />
   );

@@ -34,7 +34,7 @@ export default function GithubContributions() {
           observer.disconnect();
         }
       },
-      { rootMargin: '100px' }
+      { rootMargin: "100px" }
     );
 
     if (componentRef.current) {
@@ -177,68 +177,71 @@ export default function GithubContributions() {
   }, [shouldLoad]);
 
   return (
-    <div ref={componentRef} className="mt-6 sm:mt-8 p-4 sm:p-6 rounded-xl border border-white/10 transition-all duration-300 hover:border-green-500/30 hover:shadow-[0_2px_8px_rgba(34,197,94,0.2)] bg-gray-900/30 backdrop-blur-[2px] sm:backdrop-blur-sm">
-        {/* Header */}
-        <div className="mb-4 sm:mb-6">
-          <h3 className="text-lg sm:text-xl font-bold flex items-center gap-2 text-white mb-2">
-            <FaGithub className="text-xl sm:text-2xl text-green-400" />
-            {githubConfig.title}
-          </h3>
-          {!isLoading && !hasError && totalContributions > 0 && (
-            <p className="text-gray-400 text-xs sm:text-sm">
-              Total:{" "}
-              <span className="text-green-400 font-bold">
-                {totalContributions.toLocaleString()}
-              </span>{" "}
-              contributions
-            </p>
-          )}
-        </div>
+    <div
+      ref={componentRef}
+      className="mt-6 sm:mt-8 p-4 sm:p-6 rounded-xl border border-white/10 transition-all duration-300 hover:border-green-500/30 hover:shadow-[0_2px_8px_rgba(34,197,94,0.2)] bg-gray-900/30 backdrop-blur-[2px] sm:backdrop-blur-sm"
+    >
+      {/* Header */}
+      <div className="mb-4 sm:mb-6">
+        <h3 className="text-lg sm:text-xl font-bold flex items-center gap-2 text-white mb-2">
+          <FaGithub className="text-xl sm:text-2xl text-green-400" />
+          {githubConfig.title}
+        </h3>
+        {!isLoading && !hasError && totalContributions > 0 && (
+          <p className="text-gray-400 text-xs sm:text-sm">
+            Total:{" "}
+            <span className="text-green-400 font-bold">
+              {totalContributions.toLocaleString()}
+            </span>{" "}
+            contributions
+          </p>
+        )}
+      </div>
 
-        {/* Content */}
-        {isLoading ? (
-          <div className="flex items-center justify-center py-12 sm:py-16">
-            <div className="text-center">
-              <div className="mx-auto mb-3 sm:mb-4 h-6 w-6 sm:h-8 sm:w-8 animate-spin rounded-full border-2 border-green-500/30 border-t-green-500"></div>
-              <p className="text-gray-400 text-xs sm:text-sm">
-                {githubConfig.loadingState.description}
-              </p>
-            </div>
-          </div>
-        ) : hasError || contributions.length === 0 ? (
-          <div className="text-center py-8 sm:py-12">
-            <div className="bg-gray-800/50 mx-auto mb-3 sm:mb-4 flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-full border border-white/10">
-              <FaGithub className="h-6 w-6 sm:h-8 sm:w-8 text-gray-400" />
-            </div>
-            <p className="mb-2 font-semibold text-gray-300 text-sm sm:text-base">
-              {githubConfig.errorState.title}
+      {/* Content */}
+      {isLoading ? (
+        <div className="flex items-center justify-center py-12 sm:py-16">
+          <div className="text-center">
+            <div className="mx-auto mb-3 sm:mb-4 h-6 w-6 sm:h-8 sm:w-8 animate-spin rounded-full border-2 border-green-500/30 border-t-green-500"></div>
+            <p className="text-gray-400 text-xs sm:text-sm">
+              {githubConfig.loadingState.description}
             </p>
-            <p className="mb-3 sm:mb-4 text-xs sm:text-sm text-gray-500 px-4">
-              {githubConfig.errorState.description}
-            </p>
-            <a
-              href={`https://github.com/${githubConfig.username}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2 bg-gray-800/50 hover:bg-gray-700/50 border border-white/10 hover:border-green-500/30 rounded-lg transition-all duration-300 text-gray-300 hover:text-white text-xs sm:text-sm"
-            >
-              <FaGithub className="h-3 w-3 sm:h-4 sm:w-4" />
-              {githubConfig.errorState.buttonText}
-            </a>
           </div>
-        ) : (
-          <div className="relative">
-            {/* Scrollable container with hidden scrollbar */}
-            <div
-              ref={scrollContainerRef}
-              className="w-full overflow-x-auto smooth-scroll mb-3 sm:mb-4"
-              style={{
-                scrollbarWidth: "none",
-                msOverflowStyle: "none",
-                scrollBehavior: "smooth",
-              }}
-            >
-              <style>{`
+        </div>
+      ) : hasError || contributions.length === 0 ? (
+        <div className="text-center py-8 sm:py-12">
+          <div className="bg-gray-800/50 mx-auto mb-3 sm:mb-4 flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-full border border-white/10">
+            <FaGithub className="h-6 w-6 sm:h-8 sm:w-8 text-gray-400" />
+          </div>
+          <p className="mb-2 font-semibold text-gray-300 text-sm sm:text-base">
+            {githubConfig.errorState.title}
+          </p>
+          <p className="mb-3 sm:mb-4 text-xs sm:text-sm text-gray-500 px-4">
+            {githubConfig.errorState.description}
+          </p>
+          <a
+            href={`https://github.com/${githubConfig.username}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2 bg-gray-800/50 hover:bg-gray-700/50 border border-white/10 hover:border-green-500/30 rounded-lg transition-all duration-300 text-gray-300 hover:text-white text-xs sm:text-sm"
+          >
+            <FaGithub className="h-3 w-3 sm:h-4 sm:w-4" />
+            {githubConfig.errorState.buttonText}
+          </a>
+        </div>
+      ) : (
+        <div className="relative">
+          {/* Scrollable container with hidden scrollbar */}
+          <div
+            ref={scrollContainerRef}
+            className="w-full overflow-x-auto smooth-scroll mb-3 sm:mb-4"
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+              scrollBehavior: "smooth",
+            }}
+          >
+            <style>{`
                 .smooth-scroll::-webkit-scrollbar {
                   display: none;
                 }
@@ -249,58 +252,58 @@ export default function GithubContributions() {
                   display: none !important;
                 }
               `}</style>
-              <div className="min-w-fit">
-                <ActivityCalendar
-                  data={contributions}
-                  blockSize={blockSize}
-                  blockMargin={blockSize < 10 ? 3 : 4}
-                  fontSize={blockSize < 10 ? 10 : githubConfig.fontSize}
-                  colorScheme="dark"
-                  maxLevel={githubConfig.maxLevel}
-                  hideTotalCount={true}
-                  hideColorLegend={true}
-                  hideMonthLabels={false}
-                  showWeekdayLabels={false}
-                  theme={githubConfig.theme}
-                  labels={{
-                    months: githubConfig.months,
-                  }}
-                  style={{
-                    color: "rgb(156, 163, 175)",
-                  }}
-                />
-              </div>
-            </div>
-
-            {/* Fixed legend outside scroll area */}
-            <div className="flex items-center justify-end gap-1 sm:gap-2 text-xs text-gray-400">
-              <span className="text-[10px] sm:text-xs">Less</span>
-              <div className="flex gap-1">
-                <div
-                  className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm"
-                  style={{ backgroundColor: "rgba(17, 24, 39, 0.4)" }}
-                ></div>
-                <div
-                  className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm"
-                  style={{ backgroundColor: "rgba(16, 185, 129, 0.3)" }}
-                ></div>
-                <div
-                  className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm"
-                  style={{ backgroundColor: "rgba(16, 185, 129, 0.5)" }}
-                ></div>
-                <div
-                  className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm"
-                  style={{ backgroundColor: "rgba(16, 185, 129, 0.75)" }}
-                ></div>
-                <div
-                  className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm"
-                  style={{ backgroundColor: "rgba(16, 185, 129, 1)" }}
-                ></div>
-              </div>
-              <span className="text-[10px] sm:text-xs">More</span>
+            <div className="min-w-fit">
+              <ActivityCalendar
+                data={contributions}
+                blockSize={blockSize}
+                blockMargin={blockSize < 10 ? 3 : 4}
+                fontSize={blockSize < 10 ? 10 : githubConfig.fontSize}
+                colorScheme="dark"
+                maxLevel={githubConfig.maxLevel}
+                hideTotalCount={true}
+                hideColorLegend={true}
+                hideMonthLabels={false}
+                showWeekdayLabels={false}
+                theme={githubConfig.theme}
+                labels={{
+                  months: githubConfig.months,
+                }}
+                style={{
+                  color: "rgb(156, 163, 175)",
+                }}
+              />
             </div>
           </div>
-        )}
-      </div>
+
+          {/* Fixed legend outside scroll area */}
+          <div className="flex items-center justify-end gap-1 sm:gap-2 text-xs text-gray-400">
+            <span className="text-[10px] sm:text-xs">Less</span>
+            <div className="flex gap-1">
+              <div
+                className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm"
+                style={{ backgroundColor: "rgba(17, 24, 39, 0.4)" }}
+              ></div>
+              <div
+                className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm"
+                style={{ backgroundColor: "rgba(16, 185, 129, 0.3)" }}
+              ></div>
+              <div
+                className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm"
+                style={{ backgroundColor: "rgba(16, 185, 129, 0.5)" }}
+              ></div>
+              <div
+                className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm"
+                style={{ backgroundColor: "rgba(16, 185, 129, 0.75)" }}
+              ></div>
+              <div
+                className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm"
+                style={{ backgroundColor: "rgba(16, 185, 129, 1)" }}
+              ></div>
+            </div>
+            <span className="text-[10px] sm:text-xs">More</span>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }

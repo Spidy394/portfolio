@@ -1,13 +1,13 @@
-import { useState, Suspense, lazy, memo } from 'react'
-import LoadingScreen from './components/LoadingScreen'
-import StarField from './components/StarField'
-import Navbar from './components/Navbar';
-import MobileMenu from './components/MobileMenu';
-import Home from './components/sections/Home'
+import { useState, Suspense, lazy, memo } from "react";
+import LoadingScreen from "./components/LoadingScreen";
+import StarField from "./components/StarField";
+import Navbar from "./components/Navbar";
+import MobileMenu from "./components/MobileMenu";
+import Home from "./components/sections/Home";
 
-const About = lazy(() => import('./components/sections/About'));
-const Projects = lazy(() => import('./components/sections/Projects'));
-const Contact = lazy(() => import('./components/sections/Contact'));
+const About = lazy(() => import("./components/sections/About"));
+const Projects = lazy(() => import("./components/sections/Projects"));
+const Contact = lazy(() => import("./components/sections/Contact"));
 
 // Memoize StarField for performance
 const MemoizedStarField = memo(StarField);
@@ -29,14 +29,16 @@ const App = () => {
           <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
           <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
           <Home />
-          <Suspense fallback={
-            <div className="flex items-center justify-center py-20">
-              <div className="text-center">
-                <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-2 border-blue-500/30 border-t-blue-500"></div>
-                <p className="text-gray-400 text-sm">Loading...</p>
+          <Suspense
+            fallback={
+              <div className="flex items-center justify-center py-20">
+                <div className="text-center">
+                  <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-2 border-blue-500/30 border-t-blue-500"></div>
+                  <p className="text-gray-400 text-sm">Loading...</p>
+                </div>
               </div>
-            </div>
-          }>
+            }
+          >
             <About />
             <Projects />
             <Contact />
@@ -47,7 +49,7 @@ const App = () => {
         </footer>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

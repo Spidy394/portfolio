@@ -243,18 +243,18 @@ p {
     transform: translateY(10px); /* Reduced distance on mobile */
     transition: opacity 0.4s ease, transform 0.4s ease; /* Faster animations */
   }
-  
+
   /* Reduce backdrop-blur on mobile for better performance */
   .backdrop-blur-sm {
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
   }
-  
+
   /* Disable hover effects on mobile */
   .hover\:-translate-y-1:hover {
     transform: none;
   }
-  
+
   /* Simplify shadows on mobile */
   [class*="hover:shadow-"]:hover {
     box-shadow: none;
