@@ -1,5 +1,6 @@
 import RevealOnScroll from "../RevealOnScroll";
 import SkillCard from "../SkillCard";
+import GithubContributions from "../GithubContributions";
 import { useCustomIcons } from "../../hooks/useCustomIcons";
 import { getSkillsData } from "../../data/skills";
 import {
@@ -111,7 +112,7 @@ const About = () => {
             </div>
           </div>
 
-          <div className="mt-8 p-6 rounded-xl border border-white/10 hover:-translate-y-1 transition-all duration-300 hover:border-green-500/30 hover:shadow-[0_2px_8px_rgba(34,197,94,0.2)] bg-gray-900/30 backdrop-blur-sm">
+          <div className="mt-8 p-6 rounded-xl border border-white/10 hover:-translate-y-1 transition-all duration-300 hover:border-yellow-500/30 hover:shadow-[0_2px_8px_rgba(234,179,8,0.2)] bg-gray-900/30 backdrop-blur-sm">
             <h3 className="text-xl font-bold mb-4 flex items-center gap-2 text-white">
               <span className="text-2xl">🏆</span>
               Achievements & Involvement
@@ -120,9 +121,9 @@ const About = () => {
               {achievementsData.map((achievement, index) => (
                 <div
                   key={index}
-                  className="border-l-2 border-green-500/30 pl-4 py-2"
+                  className="border-l-2 border-yellow-500/30 pl-4 py-2"
                 >
-                  <h4 className="font-semibold text-green-400 mb-1 flex items-center gap-2">
+                  <h4 className="font-semibold text-yellow-400 mb-1 flex items-center gap-2">
                     {customIcons[achievement.icon]()}
                     {achievement.title}
                   </h4>
@@ -133,6 +134,9 @@ const About = () => {
               ))}
             </div>
           </div>
+
+          {/* GitHub Contributions Widget */}
+          <GithubContributions />
         </div>
       </RevealOnScroll>
     </section>
