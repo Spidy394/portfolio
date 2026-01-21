@@ -30,7 +30,7 @@ export const useCustomIcons = () => {
     ),
     Vercel: (SiVercel) => createReactIcon(SiVercel, "w-6 h-6 text-white"),
     Render: createIcon(
-      "https://camo.githubusercontent.com/690209768f1f7633fcb72b194e6bb3aae80c381680a660841cec9cc7c638b4fa/68747470733a2f2f736b696c6c732e73797669786f722e636f6d2f6170692f69636f6e733f693d72656e646572",
+      "https://render.com/icon.svg?e6fbdd2e217c0064",
       "Render"
     ),
     Railway: createIcon(

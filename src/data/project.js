@@ -16,23 +16,6 @@ import { BsLightning } from "react-icons/bs";
 export const getProjects = (customIcons) => [
   {
     id: 1,
-    title: "AI Voice Companion",
-    icon: HiMicrophone,
-    iconColor: "text-blue-400",
-    description:
-      "An AI-powered virtual companion designed to engage users in natural, voice-based conversations. Listens to user speech, transcribes it to text, and responds with contextually appropriate replies in a warm, expressive voice.",
-    previewImage: "/portfolio/rupa-review.png",
-    technologies: [
-      { name: "Python", icon: customIcons.Python },
-      { name: "Gemini API", icon: customIcons.GeminiAPI },
-      { name: "uv", icon: BsLightning },
-    ],
-    colorScheme: "indigo",
-    githubUrl: "https://github.com/Spidy394/AI-GF.git",
-    type: "github",
-  },
-  {
-    id: 2,
     title: "Konvo — Conversations. Simplified",
     icon: HiChatBubbleLeftRight,
     iconColor: "text-cyan-400",
@@ -55,7 +38,7 @@ export const getProjects = (customIcons) => [
     type: "both",
   },
   {
-    id: 3,
+    id: 2,
     title: "AmarVoice - Raise It. Share It. Amplify It",
     icon: customIcons.AmarVoice,
     iconColor: "text-purple-400",
@@ -81,7 +64,7 @@ export const getProjects = (customIcons) => [
     type: "both",
   },
   {
-    id: 4,
+    id: 3,
     title: "Nexora - AI-Powered Content Creation",
     icon: customIcons.Nexora,
     iconColor: "text-purple-400",
@@ -106,7 +89,7 @@ export const getProjects = (customIcons) => [
     type: "both",
   },
   {
-    id: 5,
+    id: 4,
     title: "JobFit - Smart Resume Optimization",
     icon: customIcons.JobFit,
     iconColor: "text-red-400",
