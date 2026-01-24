@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { FaGithub } from "react-icons/fa";
 import { ActivityCalendar } from "react-activity-calendar";
+import { motion } from "motion/react";
 import { githubConfig } from "../config/github";
-import RevealOnScroll from "./RevealOnScroll";
 
 // Helper function to filter contributions to past year
 function filterLastYear(contributions) {
@@ -22,8 +22,10 @@ export default function GithubContributions() {
   const [hasError, setHasError] = useState(false);
   const [blockSize, setBlockSize] = useState(12);
   const [shouldLoad, setShouldLoad] = useState(false);
+  const [glowingBoxes, setGlowingBoxes] = useState(new Set());
   const scrollContainerRef = useRef(null);
   const componentRef = useRef(null);
+  const timeoutsRef = useRef({});
 
   // Defer loading until component is visible
   useEffect(() => {
@@ -184,7 +186,7 @@ export default function GithubContributions() {
       {/* Header */}
       <div className="mb-4 sm:mb-6">
         <h3 className="text-lg sm:text-xl font-bold flex items-center gap-2 text-white mb-2">
-          <FaGithub className="text-xl sm:text-2xl text-green-400" />
+          <FaGithub className="text-xl sm:text-2xl" />
           {githubConfig.title}
         </h3>
         {!isLoading && !hasError && totalContributions > 0 && (
@@ -200,13 +202,102 @@ export default function GithubContributions() {
 
       {/* Content */}
       {isLoading ? (
-        <div className="flex items-center justify-center py-12 sm:py-16">
-          <div className="text-center">
-            <div className="mx-auto mb-3 sm:mb-4 h-6 w-6 sm:h-8 sm:w-8 animate-spin rounded-full border-2 border-green-500/30 border-t-green-500"></div>
-            <p className="text-gray-400 text-xs sm:text-sm">
-              {githubConfig.loadingState.description}
-            </p>
+        <div className="flex flex-col items-center justify-center py-8 sm:py-12">
+          {/* Animated contribution grid pattern */}
+          <div className="mb-6 relative">
+            {/* Glowing effect behind icon */}
+            <motion.div
+              className="absolute inset-0 blur-2xl"
+              animate={{
+                opacity: [0.3, 0.6, 0.3],
+                scale: [0.8, 1.2, 0.8],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              <div className="w-full h-full bg-green-400/30 rounded-full" />
+            </motion.div>
+
+            {/* Animated GitHub icon */}
+            <motion.div
+              className="relative"
+              animate={{
+                rotate: [0, 360],
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            >
+              <motion.div
+                animate={{
+                  scale: [1, 1.05, 1],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <FaGithub className="text-6xl sm:text-7xl text-green-400 drop-shadow-[0_0_15px_rgba(34,197,94,0.5)]" />
+              </motion.div>
+            </motion.div>
           </div>
+
+          {/* Animated contribution squares */}
+          <div className="flex gap-1.5 mb-3">
+            {Array.from({ length: 7 }).map((_, i) => (
+              <motion.div
+                key={i}
+                className="w-3 h-3 rounded-sm"
+                animate={{
+                  backgroundColor: [
+                    "rgba(34, 197, 94, 0.2)",
+                    "rgba(34, 197, 94, 0.8)",
+                    "rgba(34, 197, 94, 0.2)",
+                  ],
+                  scale: [1, 1.2, 1],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: i * 0.1,
+                  ease: "easeInOut",
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Loading text */}
+          <motion.p
+            className="text-green-400/80 text-sm sm:text-base font-medium"
+            animate={{
+              opacity: [0.5, 1, 0.5],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            Fetching contributions
+            <motion.span
+              animate={{
+                opacity: [0, 1, 0],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              ...
+            </motion.span>
+          </motion.p>
         </div>
       ) : hasError || contributions.length === 0 ? (
         <div className="text-center py-8 sm:py-12">
@@ -270,6 +361,82 @@ export default function GithubContributions() {
                 }}
                 style={{
                   color: "rgb(156, 163, 175)",
+                }}
+                renderBlock={(block, activity) => {
+                  const date = new Date(activity.date);
+                  const monthNames = [
+                    "Jan",
+                    "Feb",
+                    "Mar",
+                    "Apr",
+                    "May",
+                    "Jun",
+                    "Jul",
+                    "Aug",
+                    "Sep",
+                    "Oct",
+                    "Nov",
+                    "Dec",
+                  ];
+                  const month = monthNames[date.getMonth()];
+                  const day = date.getDate();
+                  const contributionText =
+                    activity.count === 1 ? "contribution" : "contributions";
+                  const tooltipText = `${activity.count} ${contributionText} on ${month} ${day}`;
+                  const boxId = activity.date;
+                  const isGlowing = glowingBoxes.has(boxId);
+
+                  const handleMouseEnter = () => {
+                    // Clear any existing timeout for this box
+                    if (timeoutsRef.current[boxId]) {
+                      clearTimeout(timeoutsRef.current[boxId]);
+                    }
+
+                    // Add to glowing set
+                    setGlowingBoxes((prev) => new Set(prev).add(boxId));
+                  };
+
+                  const handleMouseOver = () => {
+                    // Trigger on mouse over to catch all movements
+                    if (timeoutsRef.current[boxId]) {
+                      clearTimeout(timeoutsRef.current[boxId]);
+                    }
+                    setGlowingBoxes((prev) => new Set(prev).add(boxId));
+                  };
+
+                  const handleMouseLeave = () => {
+                    // Set timeout to remove glow after 1 second
+                    timeoutsRef.current[boxId] = setTimeout(() => {
+                      setGlowingBoxes((prev) => {
+                        const newSet = new Set(prev);
+                        newSet.delete(boxId);
+                        return newSet;
+                      });
+                    }, 1000);
+                  };
+
+                  return (
+                    <motion.g
+                      onMouseEnter={handleMouseEnter}
+                      onMouseOver={handleMouseOver}
+                      onMouseLeave={handleMouseLeave}
+                      animate={{
+                        y: isGlowing ? 2 : 0,
+                        scale: isGlowing ? 0.95 : 1,
+                        filter: isGlowing
+                          ? "brightness(1.3) drop-shadow(0 0 6px rgba(96, 165, 250, 0.8))"
+                          : "brightness(1)",
+                      }}
+                      transition={{
+                        duration: 0.15,
+                        ease: "easeOut",
+                      }}
+                      style={{ cursor: "pointer", pointerEvents: "all" }}
+                    >
+                      {block}
+                      <title>{tooltipText}</title>
+                    </motion.g>
+                  );
                 }}
               />
             </div>

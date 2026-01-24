@@ -149,22 +149,24 @@ const About = () => {
         </RevealOnScroll>
 
         {/* GitHub Contributions Widget */}
-        <Suspense
-          fallback={
-            <div className="mt-6 sm:mt-8 p-4 sm:p-6 rounded-xl border border-white/10 bg-gray-900/30 backdrop-blur-[2px] sm:backdrop-blur-sm">
-              <div className="flex items-center justify-center py-8">
-                <div className="text-center">
-                  <div className="mx-auto mb-3 h-6 w-6 sm:h-8 sm:w-8 animate-spin rounded-full border-2 border-green-500/30 border-t-green-500"></div>
-                  <p className="text-gray-400 text-xs sm:text-sm">
-                    Loading contributions...
-                  </p>
+        <RevealOnScroll>
+          <Suspense
+            fallback={
+              <div className="mt-6 sm:mt-8 p-4 sm:p-6 rounded-xl border border-white/10 bg-gray-900/30 backdrop-blur-[2px] sm:backdrop-blur-sm">
+                <div className="flex items-center justify-center py-8">
+                  <div className="text-center">
+                    <div className="mx-auto mb-3 h-6 w-6 sm:h-8 sm:w-8 animate-spin rounded-full border-2 border-green-500/30 border-t-green-500"></div>
+                    <p className="text-gray-400 text-xs sm:text-sm">
+                      Loading contributions...
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          }
-        >
-          <GithubContributions />
-        </Suspense>
+            }
+          >
+            <GithubContributions />
+          </Suspense>
+        </RevealOnScroll>
       </div>
     </section>
   );
