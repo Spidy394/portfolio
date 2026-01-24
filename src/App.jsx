@@ -39,8 +39,8 @@ const App = () => {
               </div>
             }
           >
-            <About />
             <Projects />
+            <About />
             <Contact />
           </Suspense>
         </div>

@@ -11,7 +11,6 @@ export const githubConfig = {
 
   // Display settings
   title: "GitHub Activity",
-  subtitle: "coding journey over the past year",
 
   // Chart settings
   blockSize: 12,
@@ -35,9 +34,6 @@ export const githubConfig = {
     "Dec",
   ],
 
-  // Weekday labels (empty for weekends, M for Monday, etc.)
-  weekdays: ["", "M", "", "W", "", "F", ""],
-
   // Total count label template
   totalCountLabel: "{{count}} contributions in the last year",
 
@@ -50,13 +46,19 @@ export const githubConfig = {
       "rgba(16, 185, 129, 0.75)", // Emerald - bright
       "rgba(16, 185, 129, 1)", // Emerald - full
     ],
-    light: [
-      "rgb(235, 237, 240)", // Light gray
-      "rgb(155, 233, 168)", // Light green
-      "rgb(64, 196, 99)", // Medium green
-      "rgb(48, 161, 78)", // Dark green
-      "rgb(33, 110, 57)", // Very dark green
-    ],
+  },
+
+  // Snake trail effect configuration
+  snakeEffect: {
+    color: "rgba(96, 165, 250, 0.8)", // Blue glow color
+    glowRadius: 6, // Glow radius in pixels
+    trailDuration: 1000, // How long the glow persists in milliseconds
+    brightness: 1.3, // Brightness multiplier on hover
+  },
+
+  // Loading state configuration
+  loadingState: {
+    text: "Fetching contributions",
   },
 
   // Error state configuration
@@ -64,11 +66,5 @@ export const githubConfig = {
     title: "Unable to load GitHub contributions",
     description: "Check out my profile directly for the latest activity",
     buttonText: "View on GitHub",
-  },
-
-  // Loading state configuration
-  loadingState: {
-    title: "Loading contributions...",
-    description: "Fetching your GitHub activity data",
   },
 };

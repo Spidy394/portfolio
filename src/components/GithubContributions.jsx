@@ -9,9 +9,12 @@ function filterLastYear(contributions) {
   const oneYearAgo = new Date();
   oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
 
+  const today = new Date();
+  today.setHours(23, 59, 59, 999); // End of today
+
   return contributions.filter((item) => {
     const itemDate = new Date(item.date);
-    return itemDate >= oneYearAgo;
+    return itemDate >= oneYearAgo && itemDate <= today;
   });
 }
 
@@ -284,7 +287,7 @@ export default function GithubContributions() {
               ease: "easeInOut",
             }}
           >
-            Fetching contributions
+            {githubConfig.loadingState.text}
             <motion.span
               animate={{
                 opacity: [0, 1, 0],
@@ -364,21 +367,7 @@ export default function GithubContributions() {
                 }}
                 renderBlock={(block, activity) => {
                   const date = new Date(activity.date);
-                  const monthNames = [
-                    "Jan",
-                    "Feb",
-                    "Mar",
-                    "Apr",
-                    "May",
-                    "Jun",
-                    "Jul",
-                    "Aug",
-                    "Sep",
-                    "Oct",
-                    "Nov",
-                    "Dec",
-                  ];
-                  const month = monthNames[date.getMonth()];
+                  const month = githubConfig.months[date.getMonth()];
                   const day = date.getDate();
                   const contributionText =
                     activity.count === 1 ? "contribution" : "contributions";
@@ -405,14 +394,14 @@ export default function GithubContributions() {
                   };
 
                   const handleMouseLeave = () => {
-                    // Set timeout to remove glow after 1 second
+                    // Set timeout to remove glow after configured duration
                     timeoutsRef.current[boxId] = setTimeout(() => {
                       setGlowingBoxes((prev) => {
                         const newSet = new Set(prev);
                         newSet.delete(boxId);
                         return newSet;
                       });
-                    }, 1000);
+                    }, githubConfig.snakeEffect.trailDuration);
                   };
 
                   return (
@@ -424,7 +413,7 @@ export default function GithubContributions() {
                         y: isGlowing ? 2 : 0,
                         scale: isGlowing ? 0.95 : 1,
                         filter: isGlowing
-                          ? "brightness(1.3) drop-shadow(0 0 6px rgba(96, 165, 250, 0.8))"
+                          ? `brightness(${githubConfig.snakeEffect.brightness}) drop-shadow(0 0 ${githubConfig.snakeEffect.glowRadius}px ${githubConfig.snakeEffect.color})`
                           : "brightness(1)",
                       }}
                       transition={{
