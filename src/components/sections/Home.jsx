@@ -3,9 +3,10 @@ import RevealOnScroll from "../RevealOnScroll";
 import TypewriterText from "../TypewriterText";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { RiTwitterXLine } from "react-icons/ri";
-import { HiMail, HiDocumentDownload } from "react-icons/hi";
+import { HiMail } from "react-icons/hi";
 import { HiEye } from "react-icons/hi2";
 import { scrollToSection } from '../../utils/smoothScroll';
+import { GrDocumentText } from "react-icons/gr";
 
 const Home = () => {
   const handleScrollOnClick = useCallback((e, sectionId) => {
@@ -74,8 +75,8 @@ const Home = () => {
               rel="noopener noreferrer"
               className="border border-cyan-500/50 text-cyan-400 py-3 px-8 rounded-lg font-medium transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_35px_rgba(34,211,238,0.3)] hover:bg-cyan-500/15 hover:border-cyan-400 hover:text-cyan-300 text-sm sm:text-base backdrop-blur-sm group relative overflow-hidden flex items-center gap-2 justify-center"
             >
-              <HiDocumentDownload size={20} className="transition-all duration-300 group-hover:scale-110" />
-              <span className="relative z-10">Download Resume</span>
+              <GrDocumentText size={20} className="transition-all duration-300 group-hover:scale-110" />
+              <span className="relative z-10"> Resume</span>
               <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/30 to-cyan-400/30 rounded-lg blur opacity-0 group-hover:opacity-50 transition-all duration-300 -z-10"></div>
             </a>
           </div>
