@@ -123,8 +123,8 @@ export const getProjects = (customIcons) => [
       { name: "Bun", icon: SiBun },
     ],
     colorScheme: "amber",
-    githubUrl: "https://github.com/Spidy394/Jagriti26",
+    githubUrl: "https://github.com/Spidy394/jagriti-26",
     liveUrl: "https://jagriti-26.vercel.app/",
-    type: "frontend",
+    type: "both",
   },
 ];
