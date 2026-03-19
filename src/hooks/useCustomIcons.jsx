@@ -120,5 +120,15 @@ export const useCustomIcons = () => {
       "AmarVoice",
       "w-10 h-8 rounded"
     ),
+    Jagriti: createIcon(
+      "https://jagriti-26.vercel.app/logo.png",
+      "Jagriti'26",
+      "w-8 h-10 rounded-full"
+    ),
+    GSAP: createIcon(
+      "https://gsap.com/apple-touch-icon.png",
+      "GSAP",
+      "size-6 rounded-full"
+    )
   };
 };

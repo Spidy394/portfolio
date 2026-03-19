@@ -8,6 +8,7 @@ import {
   SiSocketdotio,
   SiShadcnui,
   SiTypescript,
+  SiBun,
 } from "react-icons/si";
 import { HiChatBubbleLeftRight } from "react-icons/hi2";
 import { RiNextjsFill } from "react-icons/ri";
@@ -20,7 +21,7 @@ export const getProjects = (customIcons) => [
     iconColor: "text-cyan-400",
     description:
       "A modern full-stack real-time chat application developed to demonstrate proficiency in building scalable communication platforms. Leveraging React 19 for the frontend and Node.js/Express for the backend, the application features WebSocket-powered messaging via Socket.io, JWT authentication, and MongoDB-based message persistence.",
-    previewImage: "/portfolio/konvo-preview.png",
+    previewImage: "/portfolio/projects/konvo.png",
     technologies: [
       { name: "JavaScript", icon: SiJavascript },
       { name: "React", icon: SiReact },
@@ -39,11 +40,11 @@ export const getProjects = (customIcons) => [
   {
     id: 2,
     title: "AmarVoice - Raise It. Share It. Amplify It",
-    icon: customIcons.AmarVoice,
+    icon: customIcons.AmarVoice, 
     iconColor: "text-purple-400",
     description:
       "A full-stack platform built to empower the people with transparent, AI-driven complaint submission and resolution. Users can raise voice or text-based complaints, track them in real time, and engage with the community. Features include Gemini-powered categorization, ai powered transcription and translation.",
-    previewImage: "/portfolio/amarVoice-preview.png",
+    previewImage: "/portfolio/projects/amarVoice.png",
     technologies: [
       { name: "JavaScript", icon: SiJavascript },
       { name: "Next.js", icon: RiNextjsFill },
@@ -69,7 +70,7 @@ export const getProjects = (customIcons) => [
     iconColor: "text-purple-400",
     description:
       "A comprehensive AI content creation platform designed to revolutionize your workflow. Features include AI article writing, blog title generation, image creation, background removal, object removal, and resume reviewing. Built with cutting-edge AI technology to help creators produce high-quality content faster and more efficiently.",
-    previewImage: "/portfolio/nexora-preview.png",
+    previewImage: "/portfolio/projects/nexora.png",
     technologies: [
       { name: "JavaScript", icon: SiJavascript },
       { name: "React", icon: SiReact },
@@ -94,7 +95,7 @@ export const getProjects = (customIcons) => [
     iconColor: "text-red-400",
     description:
       "An AI-powered platform that helps job seekers optimize their resumes for specific job postings. Features intelligent keyword matching, ATS compatibility scoring, personalized suggestions, and resume formatting tools. Built to bridge the gap between candidate qualifications and employer expectations using advanced AI algorithms.",
-    previewImage: "/portfolio/JobFit-preview.png",
+    previewImage: "/portfolio/projects/JobFit.png",
     technologies: [
       { name: "TypeScript", icon: SiTypescript },
       { name: "React", icon: SiReact },
@@ -106,5 +107,24 @@ export const getProjects = (customIcons) => [
     githubUrl: "https://github.com/Spidy394/JobFit",
     liveUrl: "https://job-fit-tau.vercel.app/",
     type: "both",
+  },
+  {
+    id: 5,
+    title: "Jagriti'26 - Cultural Fest",
+    icon: customIcons.Jagriti,
+    iconColor: "text-amber-400",
+    description:
+      "The official website for Jagriti'26, the flagship cultural fest of Government College of Engineering & Ceramic Technology. Designed with a stunning, highly interactive UI featuring smooth scroll animations, preloader, and dynamic event sections to deliver a premium user experience.",
+    previewImage: "/portfolio/projects/jagriti'26.png",
+    technologies: [
+      { name: "React", icon: SiReact },
+      { name: "TailwindCSS", icon: SiTailwindcss },
+      { name: "GSAP", icon: customIcons.GSAP },
+      { name: "Bun", icon: SiBun },
+    ],
+    colorScheme: "amber",
+    githubUrl: "https://github.com/Spidy394/Jagriti26",
+    liveUrl: "https://jagriti-26.vercel.app/",
+    type: "frontend",
   },
 ];
