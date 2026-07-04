@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import RevealOnScroll from "../RevealOnScroll";
 import TypewriterText from "../TypewriterText";
+import NowPlaying from "../NowPlaying";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { RiTwitterXLine } from "react-icons/ri";
 import { HiMail } from "react-icons/hi";
@@ -70,7 +71,7 @@ const Home = () => {
               <span className="relative z-10">Contact Me</span>
               <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/30 to-blue-400/30 rounded-lg blur opacity-0 group-hover:opacity-50 transition-all duration-300 -z-10"></div>
             </a>            <a
-              href="https://drive.google.com/file/d/1_KKPOyGIQEw9FiDCtFoiKNxv3SKACuSK/view?usp=sharing"
+              href="https://drive.google.com/file/d/1Xb7iD3-kRh7I6j8tjwsMSH3IPSgtg2LD/view?usp=drive_link"
               target="_blank"
               rel="noopener noreferrer"
               className="border border-cyan-500/50 text-cyan-400 py-3 px-8 rounded-lg font-medium transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_35px_rgba(34,211,238,0.3)] hover:bg-cyan-500/15 hover:border-cyan-400 hover:text-cyan-300 text-sm sm:text-base backdrop-blur-sm group relative overflow-hidden flex items-center gap-2 justify-center"
@@ -83,9 +84,9 @@ const Home = () => {
           
           {/* Social Media Links */}
           <div className="mt-10 flex justify-center gap-6">
-            <a 
-              href="https://github.com/Spidy394" 
-              target="_blank" 
+            <a
+              href="https://github.com/Spidy394"
+              target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-gray-800/50 border border-gray-700/50 text-gray-400 hover:text-white hover:bg-gray-900/80 hover:border-gray-600/70 transition-all duration-300 transform hover:scale-125 hover:-rotate-6 hover:shadow-[0_8px_25px_rgba(255,255,255,0.15)] backdrop-blur-sm group relative"
               aria-label="GitHub Profile"
@@ -93,9 +94,9 @@ const Home = () => {
               <FaGithub className="w-6 h-6 relative z-10" />
               <div className="absolute -inset-2 bg-gradient-to-r from-gray-600/20 to-gray-400/20 rounded-full blur opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10"></div>
             </a>
-            <a 
-              href="https://www.linkedin.com/in/shubho-deep" 
-              target="_blank" 
+            <a
+              href="https://www.linkedin.com/in/shubho-deep"
+              target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-gray-800/50 border border-gray-700/50 text-gray-400 hover:text-blue-500 hover:bg-blue-500/20 hover:border-blue-500/50 transition-all duration-300 transform hover:scale-125 hover:rotate-6 hover:shadow-[0_8px_25px_rgba(0,119,181,0.4)] backdrop-blur-sm group relative"
               aria-label="LinkedIn Profile"
@@ -103,9 +104,9 @@ const Home = () => {
               <FaLinkedin className="w-6 h-6 relative z-10" />
               <div className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 to-blue-400/20 rounded-full blur opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10"></div>
             </a>
-            <a 
-              href="https://x.com/shubho_deep_09" 
-              target="_blank" 
+            <a
+              href="https://x.com/shubho_deep_09"
+              target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-gray-800/50 border border-gray-700/50 text-gray-400 hover:text-white hover:bg-black/60 hover:border-gray-500/50 transition-all duration-300 transform hover:scale-125 hover:-rotate-6 hover:shadow-[0_8px_25px_rgba(255,255,255,0.15)] backdrop-blur-sm group relative"
               aria-label="Twitter Profile"
@@ -113,6 +114,11 @@ const Home = () => {
               <RiTwitterXLine className="w-6 h-6 relative z-10" />
               <div className="absolute -inset-2 bg-gradient-to-r from-gray-500/20 to-gray-300/20 rounded-full blur opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10"></div>
             </a>
+          </div>
+
+          {/* Now Playing widget */}
+          <div className="mt-8 sm:mt-10 flex justify-center">
+            <NowPlaying />
           </div>
         </div>
       </RevealOnScroll>
