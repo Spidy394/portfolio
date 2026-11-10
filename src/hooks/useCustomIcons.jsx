@@ -38,18 +38,6 @@ export const useCustomIcons = () => {
       "Railway",
       "size-6 rounded-full"
     ),
-    Solidity: createIcon(
-      "https://www.soliditylang.org/assets/favicon.ico",
-      "Solidity",
-      "w-6 h-6 rounded-full"
-    ),
-    Ethereum: createIcon("https://ethereum.org/favicon.ico", "Ethereum"),
-    Hardhat: createIcon("https://hardhat.org/favicon.ico", "Hardhat"),
-    MetaMask: createIcon(
-      "https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg",
-      "MetaMask"
-    ),
-    IPFS: createIcon("https://docs.ipfs.tech/images/ipfs-logo.svg", "IPFS"),
     GeminiAPI: createIcon(
       "https://brandlogo.org/wp-content/uploads/2024/06/Gemini-Icon.png.webp",
       "Gemini API",
@@ -100,6 +88,11 @@ export const useCustomIcons = () => {
       "Google Student Ambassador",
       "w-5 h-5"
     ),
+    ByteMonk: createIcon(
+      "/bytemonk-logo.png",
+      "ByteMonk",
+      "w-5 h-5 object-contain"
+    ),
     Hacktoberfest: createIcon(
       "https://assets.holopin.io/hf2025levels/lvl5-human.webp",
       "Hacktoberfest",
@@ -129,6 +122,21 @@ export const useCustomIcons = () => {
       "https://gsap.com/apple-touch-icon.png",
       "GSAP",
       "size-6 rounded-full"
-    )
+    ),
+    Supabase: createIcon(
+      "https://supabase.com/favicon/favicon.ico",
+      "Supabase",
+      "w-6 h-6"
+    ),
+    Puppeteer: createIcon(
+      "https://user-images.githubusercontent.com/10379601/29446482-04f7036a-841f-11e7-9872-91d1fc2ea683.png",
+      "Puppeteer",
+      "w-6 h-6 rounded-full"
+    ),
+    Expo: createIcon(
+      "https://expo.dev/static/favicons/favicon-dark-48x48.png",
+      "Expo",
+      "w-6 h-6"
+    ),
   };
 };

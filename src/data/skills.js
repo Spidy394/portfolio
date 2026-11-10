@@ -28,7 +28,6 @@ import {
   HiCog,
   HiDatabase,
   HiCloud,
-  HiCube,
 } from "react-icons/hi";
 import { FaGithub } from "react-icons/fa";
 
@@ -99,17 +98,6 @@ export const getSkillsData = (customIcons) => ({
       { name: "Vercel", icon: customIcons.Vercel(SiVercel) },
       { name: "Render", icon: customIcons.Render },
       { name: "Railway", icon: customIcons.Railway },
-    ],
-  },
-  web3: {
-    title: "Web3 & Blockchain",
-    titleIcon: HiCube,
-    skills: [
-      { name: "Solidity", icon: customIcons.Solidity },
-      { name: "Ethereum", icon: customIcons.Ethereum },
-      { name: "Hardhat", icon: customIcons.Hardhat },
-      { name: "MetaMask", icon: customIcons.MetaMask },
-      { name: "IPFS", icon: customIcons.IPFS },
     ],
   },
 });

@@ -34,7 +34,7 @@ const SkillCard = ({ title, titleIcon, skills }) => {
     <div
       className={`rounded-xl p-4 sm:p-6 transition-all duration-300 border border-white/10 bg-gray-900/30 backdrop-blur-[2px] sm:backdrop-blur-sm ${getCardHoverClasses(
         colorSchemeName
-      )} w-full sm:w-fit sm:min-w-[280px] sm:max-w-[400px] sm:flex-1 h-fit`}
+      )} w-full sm:w-fit sm:min-w-[280px] sm:max-w-[400px] sm:flex-1 h-auto`}
     >
       <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-white flex items-center gap-2 whitespace-nowrap">
         {titleIcon &&
