@@ -119,12 +119,16 @@ export default function GithubContributions() {
         // Add timestamp to prevent caching
         const timestamp = new Date().getTime();
         const response = await fetch(
-          `${githubConfig.apiUrl}/${githubConfig.username}.json?t=${timestamp}`
+          `${githubConfig.apiUrl}/${githubConfig.username}?y=last&t=${timestamp}`,
+          { cache: "no-store" }
         );
+        if (!response.ok) {
+          throw new Error(`GitHub contributions request failed: ${response.status}`);
+        }
         const data = await response.json();
 
         if (data?.contributions && Array.isArray(data.contributions)) {
-          // Flatten the nested array structure
+          // Support both flat and grouped contribution responses.
           const flattenedContributions = data.contributions.flat();
 
           // Convert contribution levels to numbers
@@ -143,13 +147,16 @@ export default function GithubContributions() {
                 typeof item === "object" &&
                 item !== null &&
                 "date" in item &&
-                "contributionCount" in item &&
-                "contributionLevel" in item
+                ("count" in item || "contributionCount" in item) &&
+                ("level" in item || "contributionLevel" in item)
             )
             .map((item) => ({
               date: String(item.date),
-              count: Number(item.contributionCount || 0),
-              level: contributionLevelMap[item.contributionLevel] || 0,
+              count: Number(item.count ?? item.contributionCount ?? 0),
+              level:
+                typeof item.level === "number"
+                  ? item.level
+                  : contributionLevelMap[item.contributionLevel] || 0,
             }));
 
           if (validContributions.length > 0) {
