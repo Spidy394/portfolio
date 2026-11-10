@@ -96,28 +96,35 @@ const About = () => {
                 Work Experience
               </h3>
               <div className="space-y-3 sm:space-y-4 text-gray-300">
-                <div className="border-l-2 border-purple-500/30 pl-3 sm:pl-4">
-                  {workExperience.isLookingForOpportunities ? (
-                    <div className="text-center py-6 sm:py-8">
-                      <div className="text-4xl sm:text-6xl mb-3 sm:mb-4 opacity-50">
-                        🚀
-                      </div>
-                      <h4 className="font-semibold text-base sm:text-lg text-purple-400 mb-2">
-                        {workExperience.title}
+                {workExperience.map((experience) => (
+                  <div
+                    key={`${experience.company}-${experience.role}`}
+                    className="border-l-2 border-purple-500/30 pl-3 sm:pl-4"
+                  >
+                    <div className="flex flex-col gap-1 mb-3">
+                      <h4 className="font-semibold text-base sm:text-lg text-purple-400">
+                        {experience.role}
                       </h4>
-                      <p className="text-gray-400 text-xs sm:text-sm">
-                        {workExperience.description}
+                      <p className="text-gray-300 text-sm sm:text-base">
+                        {experience.company}
                       </p>
-                      <p className="text-gray-500 text-xs sm:text-sm mt-2">
-                        {workExperience.details}
+                      <p className="text-gray-500 text-xs sm:text-sm">
+                        {experience.dates} · {experience.location}
                       </p>
                     </div>
-                  ) : (
-                    <div>
-                      {/* Add work experience entries here when available */}
-                    </div>
-                  )}
-                </div>
+                    <ul className="list-disc space-y-2 pl-4 text-gray-400 text-xs sm:text-sm leading-relaxed">
+                      {experience.description.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                    <p className="text-gray-500 text-xs sm:text-sm mt-3 leading-relaxed">
+                      <span className="text-purple-300 font-medium">
+                        Technologies / Skills:
+                      </span>{" "}
+                      {experience.skills}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
           </RevealOnScroll>
