@@ -129,6 +129,25 @@ export const useCustomIcons = () => {
       "https://gsap.com/apple-touch-icon.png",
       "GSAP",
       "size-6 rounded-full"
-    )
+    ),
+    ArthaFlow: createIcon(
+      "/projects/arthaflow.png",
+      "ArthaFlow",
+      "size-8 rounded"
+    ),
+    Expo: createIcon("https://cdn.simpleicons.org/expo/white", "Expo"),
+    DrizzleORM: createIcon(
+      "https://cdn.simpleicons.org/drizzle/white",
+      "Drizzle ORM"
+    ),
+    Zod: createIcon("https://cdn.simpleicons.org/zod/white", "Zod"),
+    BetterAuth: createIcon(
+      "https://cdn.simpleicons.org/betterauth/white",
+      "Better Auth"
+    ),
+    UpstashRedis: createIcon(
+      "https://cdn.simpleicons.org/upstash/white",
+      "Upstash Redis"
+    ),
   };
 };
