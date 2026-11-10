@@ -34,8 +34,8 @@ export async function fetchNowPlaying() {
   try {
     const url =
       `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks` +
-      `&user=${encodeURIComponent(USERNAME)}&api_key=${API_KEY}&format=json&limit=1`;
-    const res = await fetch(url);
+      `&user=${encodeURIComponent(USERNAME)}&api_key=${API_KEY}&format=json&limit=1&_=${Date.now()}`;
+    const res = await fetch(url, { cache: "no-store" });
     if (!res.ok) return null;
     const data = await res.json();
 

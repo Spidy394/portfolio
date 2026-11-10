@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { SiYoutubemusic } from "react-icons/si";
 import { fetchNowPlaying, cleanTitle } from "../api/lastfm";
 
-const POLL_INTERVAL = 30_000;
+const POLL_INTERVAL = 10_000;
 
 export default function NowPlaying() {
   const [track, setTrack] = useState(null);
@@ -11,8 +11,13 @@ export default function NowPlaying() {
 
   useEffect(() => {
     let cancelled = false;
+    let loading = false;
+
     async function load() {
+      if (loading) return;
+      loading = true;
       const data = await fetchNowPlaying();
+      loading = false;
       if (cancelled) return;
       if (data) {
         setTrack(data);
@@ -21,9 +26,22 @@ export default function NowPlaying() {
         setStatus("offline");
       }
     }
+
+    const refreshWhenVisible = () => {
+      if (document.visibilityState === "visible") load();
+    };
+
     load();
     const id = setInterval(load, POLL_INTERVAL);
-    return () => { cancelled = true; clearInterval(id); };
+    document.addEventListener("visibilitychange", refreshWhenVisible);
+    window.addEventListener("focus", refreshWhenVisible);
+
+    return () => {
+      cancelled = true;
+      clearInterval(id);
+      document.removeEventListener("visibilitychange", refreshWhenVisible);
+      window.removeEventListener("focus", refreshWhenVisible);
+    };
   }, []);
 
   if (status === "offline") return null;
