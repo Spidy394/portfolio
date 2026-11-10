@@ -123,6 +123,25 @@ export const useCustomIcons = () => {
       "GSAP",
       "size-6 rounded-full"
     ),
+    ArthaFlow: createIcon(
+      "/projects/arthaflow.png",
+      "ArthaFlow",
+      "size-8 rounded"
+    ),
+    Expo: createIcon("https://cdn.simpleicons.org/expo/white", "Expo"),
+    DrizzleORM: createIcon(
+      "https://cdn.simpleicons.org/drizzle/white",
+      "Drizzle ORM"
+    ),
+    Zod: createIcon("https://cdn.simpleicons.org/zod/white", "Zod"),
+    BetterAuth: createIcon(
+      "https://cdn.simpleicons.org/betterauth/white",
+      "Better Auth"
+    ),
+    UpstashRedis: createIcon(
+      "https://cdn.simpleicons.org/upstash/white",
+      "Upstash Redis"
+    ),
     Supabase: createIcon(
       "https://supabase.com/favicon/favicon.ico",
       "Supabase",
@@ -132,11 +151,6 @@ export const useCustomIcons = () => {
       "https://user-images.githubusercontent.com/10379601/29446482-04f7036a-841f-11e7-9872-91d1fc2ea683.png",
       "Puppeteer",
       "w-6 h-6 rounded-full"
-    ),
-    Expo: createIcon(
-      "https://expo.dev/static/favicons/favicon-dark-48x48.png",
-      "Expo",
-      "w-6 h-6"
     ),
   };
 };
