@@ -154,4 +154,27 @@ export const getProjects = (customIcons) => [
     githubUrl: "https://github.com/Spidy394/ArthaFlow-mobile",
     type: "github",
   },
+  {
+  id: 7,
+  title: "ByteMonk - Developer Community Platform",
+  icon: customIcons.ByteMonk,
+  iconColor: "text-cyan-400",
+  description:
+    "A responsive community platform for ByteMonk, featuring developer chapter profiles, event discovery and filtering, event detail modals, team directories, galleries, FAQs, and competitive-programming leaderboards. Built with reusable components, dynamic chapter routes, client-side state management, animations, and Cloudflare deployment support.",
+  previewImage: "/bytemonk-logo.png",
+  technologies: [
+    { name: "Next.js", icon: RiNextjsFill },
+    { name: "React", icon: SiReact },
+    { name: "TypeScript", icon: SiTypescript },
+    { name: "TailwindCSS", icon: SiTailwindcss },
+    { name: "Shadcn UI", icon: SiShadcnui },
+    { name: "Zustand" },
+    { name: "Motion" },
+    { name: "Cloudflare", icon: SiCloudflare },
+  ],
+  colorScheme: "cyan",
+  githubUrl: "https://github.com/GCECTBytemonk/bytemonk-26",
+  liveUrl: "https://bytemonk-26.bytemonk.workers.dev",
+  type: "both",
+  }
 ];
