@@ -170,7 +170,7 @@ export const getProjects = (customIcons) => [
     { name: "Shadcn UI", icon: SiShadcnui },
     { name: "Zustand" },
     { name: "Motion" },
-    { name: "Cloudflare", icon: SiCloudflare },
+    { name: "Cloudflare", icon: customIcons.Cloudflare },
   ],
   colorScheme: "cyan",
   githubUrl: "https://github.com/GCECTBytemonk/bytemonk-26",

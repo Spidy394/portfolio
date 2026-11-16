@@ -68,6 +68,11 @@ export const useCustomIcons = () => {
       "Cloudinary",
       "w-4 h-4"
     ),
+    Cloudflare: createIcon(
+      "https://www.cloudflare.com/favicon.ico",
+      "Cloudflare",
+      "w-5 h-5"
+    ),
     ReactRouter: createIcon(
       "https://reactrouter.com/favicon-dark.png",
       "React Router",
